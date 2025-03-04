@@ -1,0 +1,61 @@
+﻿@model IEnumerable<Department>
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Departments";
+}
+<h3><i class="fa-brands fa-delicious"></i> Departments</h3>
+<hr />
+
+<a class="btn btn-success" asp-action="Create"><i class="fa-solid fa-square-plus"></i> Create New</a>
+
+<div class="pt-3 table-responsive">
+    <table class="table table-hover">
+        <thead class="table-success table-head-fixed">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.DepartmentId)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DepartmentName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Description)
+                </th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DepartmentId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DepartmentName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </td>
+                    <td>
+                        <button type="button" class="btn text-info border-0" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fa-solid fa-ellipsis-vertical"></i>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a class="px-3 py-1 d-flex justify-content-between align-items-center" asp-action="Edit" asp-route-id="@item.DepartmentId">Edit <i class="fa-regular fa-pen-to-square"></i></a>
+                            </li>
+                            <li>
+                                <a class="px-3 py-1 d-flex justify-content-between align-items-center text-success" asp-action="Details" asp-route-id="@item.DepartmentId">Details <i class="fa-regular fa-eye"></i></a>
+                            </li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li>
+                                <a class="px-3 py-1 d-flex justify-content-between align-items-center text-danger" asp-action="Delete" asp-route-id="@item.DepartmentId">Delete <i class="fa-solid fa-trash"></i></a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,99 @@
+﻿@model Customer
+@{
+	Layout = "_Layout";
+	ViewData["Title"] = "Details Customer";
+}
+
+<div class="d-flex pb-1" style="justify-content:space-between; align-items:center;">
+	<h4 style="color: #8080f1;"><i class="fa-solid fa-building-user"></i> @ViewData["Title"]</h4>
+	<ul class="breadcrumbs ps-0">
+		<li><a href="/">Home</a></li>
+		<li class="divider">/</li>
+		<li><a href="/Customer/details" class="active"></a>details</li>
+	</ul>
+</div>
+<hr class="mt-0"/>
+<div class="form-container">
+	<div class="row">
+		<div class="col-6 col-md-4">
+			<div class="form-group mb-4">
+				<label asp-for="FirstName" class="control-label"></label>
+				<input asp-for="FirstName" class="form-control" disabled />
+			</div>
+		</div>
+		<div class="col-6 col-md-4">
+			<div class="form-group mb-4">
+				<label asp-for="LastName" class="control-label"></label>
+				<input asp-for="LastName" class="form-control" disabled />
+			</div>
+		</div>
+
+		<div class="col-6 col-md-4">
+			<div class="form-group mb-4">
+				<label asp-for="IdCard" class="control-label"></label>
+				<input asp-for="IdCard" class="form-control" disabled />
+			</div>
+		</div>
+
+		<div class="col-6 col-md-4">
+			<div class="form-group mb-4">
+				<label asp-for="Gender" class="control-label"></label>
+				<select asp-for="Gender" class="form-control" disabled>
+					<option value="">-- Select Gender --</option>
+					<option value="Male">Male</option>
+					<option value="Female">Female</option>
+				</select>
+			</div>
+		</div>
+		<div class="col-6 col-md-4">
+			<div class="form-group mb-4">
+				<label asp-for="Phone" class="control-label"></label>
+				<input asp-for="Phone" class="form-control" disabled />
+			</div>
+		</div>
+		<div class="col-6 col-md-4">
+			<div class="form-group mb-4">
+				<label asp-for="Email" class="control-label"></label>
+				<input asp-for="Email" class="form-control" disabled />
+			</div>
+		</div>
+		<div class="col-6 col-md-4">
+			<div class="form-group mb-4">
+				<label asp-for="Income" class="control-label"></label>
+				<input asp-for="Income" class="form-control" disabled />
+			</div>
+		</div>
+		<div class="col-6 col-md-4">
+			<div class="form-group mb-4">
+				<label asp-for="Expense" class="control-label"></label>
+				<input asp-for="Expense" class="form-control" disabled />
+			</div>
+		</div>
+		<div class="col-6 col-md-4">
+			<div class="form-group mb-4">
+				<label asp-for="PasswordNo" class="control-label"></label>
+				<input asp-for="PasswordNo" class="form-control" disabled />
+			</div>
+		</div>
+		<div class="col-6 col-md-4">
+			<div class="form-group mb-4">
+				<label asp-for="Address" class="control-label"></label>
+				<input asp-for="Address" class="form-control" disabled />
+			</div>
+		</div>
+		<div class="col-6 col-md-8">
+			<div class="form-group mb-4">
+				<label asp-for="Description" class="control-label"></label>
+				<textarea asp-for="Description" class="form-control" rows="1" disabled></textarea>
+			</div>
+		</div>
+		<div class="col-12">
+			<div class="form-group mb-4">
+				<a asp-action="Edit" asp-route-id="@Model.CustomerId" class="btn btn-success">Edit Customer</a> |
+				<a asp-action="Index" class="btn btn-primary">Back to List</a> |
+				<a asp-action="delete" asp-route-id="@Model.CustomerId" class=" btn btn-danger"> Delete</a>
+			</div>
+		</div>
+	</div>
+</div>
+

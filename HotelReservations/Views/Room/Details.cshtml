@@ -1,0 +1,115 @@
+﻿@model Rooms
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Details Room";
+}
+
+<div class="d-flex pb-1" style="justify-content:space-between; align-items:center;">
+    <h4 style="color: #8080f1;display: flex;align-items: center;">
+        <i class='fs-1 bx bxs-door-open icon'></i> @ViewData["Title"]
+    </h4>
+    <ul class="breadcrumbs ps-0">
+        <li><a href="/">Home</a></li>
+        <li class="divider">/</li>
+        <li><a href="/Room/Create" class="active">Create</a></li>
+    </ul>
+</div>
+<hr class="mt-0" />
+<div class="form-container" data-aos="fade-in">
+    <div class="row">
+        <div class="col-lg-7">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group mb-4">
+                        <label asp-for="RoomName" class="control-label"></label>
+                        <input asp-for="RoomName" class="form-control" disabled/>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <label asp-for="RoomType" class="control-label"></label>
+                    <div class="input-group">
+                        <select asp-for="RoomTypeId" class="form-control form-select" asp-items="ViewBag.roomTypes" disabled>
+                            <option value="">-- Select RoomType --</option>
+                        </select>
+                        <a class="btn" style="background: #8080f1;color: #fff;"
+                           data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="New Roomtype"
+                           href="/roomtype/create"><i class="fa-solid fa-plus"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group mb-4">
+                        <label asp-for="RoomSize" class="control-label"></label>
+                        <input asp-for="RoomSize" class="form-control" disabled />
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group mb-4">
+                        <label asp-for="Capacity" class="control-label"></label>
+                        <input asp-for="Capacity" class="form-control" disabled />
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group mb-4">
+                        <label asp-for="PricePerNight" class="control-label"></label>
+                        <input asp-for="PricePerNight" class="form-control" disabled />
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group mb-4">
+                        <label asp-for="Floor" class="control-label"></label>
+                        <input asp-for="Floor" class="form-control" disabled />
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group mb-4">
+                        <label asp-for="Amenities" class="control-label"></label>
+                        <textarea asp-for="Amenities" class="form-control" disabled></textarea>
+                    </div>
+                </div>
+
+                <div class="col-6">
+                    <div class="form-group mb-4">
+                        <label asp-for="Description" class="control-label"></label>
+                        <textarea asp-for="Description" class="form-control" disabled></textarea>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group mb-4">
+                        <div class="form-check">
+                            <label asp-for="Status" class="form-check-label"></label>
+                            <input asp-for="Status" name="Status" class="form-check-input" disabled />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-5">
+            <div class="col-12">
+                <div class="mb-2">
+                    <label asp-for="RoomImage" class="control-label"></label>
+                    <input type="file" asp-for="RoomImage" name="photo" id="photo" class="form-control" value="~/@Model.RoomImage" disabled />
+                </div>
+            </div>
+            @if (Model.RoomImage is null)
+            {
+                <img src="~/images/uploads.svg" id="imagePreview" alt="Room Type Image" class="rounded-3 img-fluid" />
+            }
+            else
+            {
+                <img src="~/@Model.RoomImage" id="imagePreview" alt="Room Type Image" class="rounded-3 img-fluid" />
+            }
+        </div>
+
+        <div class="col-12">
+            <div class="form-group">
+                <a asp-action="Edit" asp-route-id="@Model.RoomId" class="btn btn-success">Edit Room</a> |
+                <a asp-action="index" class="btn btn-primary">Back to List</a> |
+                <a asp-action="delete" asp-route-id="@Model.RoomId" class="btn btn-danger">Delete</a>
+            </div>
+        </div>
+    </div>
+</div>
+

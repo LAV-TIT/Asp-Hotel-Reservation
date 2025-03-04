@@ -1,0 +1,132 @@
+﻿@model Employee
+@{
+	Layout = "_Layout";
+	ViewData["Title"] = "Delete Employee";
+}
+
+<div class="d-flex pb-1" style="justify-content:space-between; align-items:center;">
+    <h4 style="color: #dc3545;"><i class="fa-solid fa-user-tag"></i> @ViewData["Title"]</h4>
+    <hr />
+    <ul class="breadcrumbs ps-0">
+        <li><a href="/">Home</a></li>
+        <li class="divider">/</li>
+        <li><a href="/employee/delete" class="active">delete</a></li>
+    </ul>
+</div>
+<hr class="mt-0"/>
+<div class="form-container delete" data-aos="fade-in">
+    <div class="row">
+        <div class="col-lg-7">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group mb-4">
+                        <label class="control-label">@Html.DisplayNameFor(model => model.FirstName)</label>
+                        <input class="form-control" value="@Html.DisplayFor(model => model.FirstName)" disabled />
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group mb-4">
+                        <label class="control-label">@Html.DisplayNameFor(model => model.LastName)</label>
+                        <input class="form-control" value="@Html.DisplayFor(model => model.LastName)" disabled />
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group mb-4">
+                        <label asp-for="Gender" class="control-label"></label>
+                        <select asp-for="Gender" class="form-control form-select" disabled>
+                            <option value="">-- Select Gender --</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <label class="control-label">Department</label>
+                    <div class="input-group">
+                        <select class="form-control form-select" disabled>
+                            <option selected value="@Html.DisplayFor(model => model.Department.DepartmentName)">@Html.DisplayFor(model => model.Department.DepartmentName)</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group mb-4">
+                        <label class="control-label">@Html.DisplayNameFor(model => model.Position)</label>
+                        <input class="form-control" value="@Html.DisplayFor(model => model.Position)" disabled />
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group mb-4">
+                        <label class="control-label">@Html.DisplayNameFor(model => model.Salary)</label>
+                        <input class="form-control" value="@Html.DisplayFor(model => model.Salary)" disabled />
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group mb-4">
+                        <label class="control-label">@Html.DisplayNameFor(model => model.HireDate)</label>
+                        <input class="form-control" value="@Html.DisplayFor(model => model.HireDate)" disabled />
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group mb-4">
+                        <label class="control-label">@Html.DisplayNameFor(model => model.Phone)</label>
+                        <input class="form-control" value="@Html.DisplayFor(model => model.Phone)" disabled />
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group mb-4">
+                        <label class="control-label">@Html.DisplayNameFor(model => model.Email)</label>
+                        <input class="form-control" value="@Html.DisplayFor(model => model.Email)" disabled />
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group mb-4">
+                        <label asp-for="Address" class="control-label"></label>
+                        <textarea asp-for="Address" class="form-control" rows="1" disabled></textarea>
+                    </div>
+                </div>
+
+                <div class="col-6">
+                    <div class="form-group mb-4">
+                        <label asp-for="Description" class="control-label"></label>
+                        <textarea asp-for="Description" class="form-control" rows="1" disabled></textarea>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group mb-4">
+                        <label asp-for="IsActive" class="form-check-label">Active</label>
+                        <div class="form-check">
+                            <input asp-for="IsActive" class="form-check-input" disabled />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-5">
+            <div class="col-12">
+                <div class="mb-2">
+                    <label asp-for="Avatar" class="control-label"></label>
+                    <input type="file" asp-for="Avatar" name="photo" id="photo" class="form-control" value="~/@Model.Avatar" disabled/>
+                    <span asp-validation-for="Avatar" class="text-danger"></span>
+                </div>
+            </div>
+            @if (Model.Avatar is null)
+            {
+                <img src="~/images/uploads.svg" id="imagePreview" alt="Room Type Image" class="rounded-3 img-fluid" />
+            }
+            else
+            {
+                <img src="~/@Model.Avatar" id="imagePreview" alt="Room Type Image" class="rounded-3 img-fluid" />
+            }
+        </div>
+        <div class="col-12">
+            <div class="form-group">
+                <form asp-action="Delete">
+                    <input type="hidden" asp-for="EmployeeId" />
+                    <input type="submit" value="Confirm" class="btn btn-danger" /> |
+                    <a asp-action="Index" class="btn btn-warning">Cancel</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

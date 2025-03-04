@@ -1,0 +1,148 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en" class="dark">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>@ViewBag.Title</title>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link href="~/font-awesome/css/all.min.css" rel="stylesheet" />
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <link href="~/boxicons/css/boxicons.min.css" rel="stylesheet" />
+    <link href="~/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/aos/aos.css" rel="stylesheet" />
+	<link rel="stylesheet" href="~/css/main.css">
+
+	 <style>
+        .table-responsive::-webkit-scrollbar {
+            width: 10px; 
+        }
+        .table-responsive::-webkit-scrollbar-track {
+            background: #f0f0f0;
+        }
+        .table-responsive::-webkit-scrollbar-thumb {
+            background-color: #4caf50;
+            border-radius: 10px;
+            border: 5px solid #ffffff; 
+        }
+        .table-responsive:-webkit-scrollbar-thumb:hover {
+            background-color: #45a049; 
+        }
+	 table tr,th,td{
+			white-space: nowrap;
+			padding: 10px;
+			border-collapse: collapse;
+		}
+    </style>
+</head>
+
+<body>
+	<!-- SIDEBAR -->
+	<partial name="_Sidebar" />
+	<!-- SIDEBAR -->
+	<!-- NAVBAR -->
+	<main id="content">
+		<!-- NAVBAR -->
+		<partial name="_Navbar" />
+		<!-- NAVBAR -->
+		<!-- MAIN -->
+       
+		<section style="padding: 15px;">
+         
+			@RenderBody()
+		</section>
+		<!-- MAIN -->
+		<partial name="_Footer" />
+	</main>
+	<!-- NAVBAR -->
+    <script src="~/jquery/jquery.min.js"></script>
+    <script src="~/jquery-validate/jquery.validate.min.js"></script>
+    <script src="~/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <script src="~/aos/aos.js"></script>
+	<script src="~/js/main.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Get the active tab from local storage
+            const activeTab = localStorage.getItem('activeTab');
+
+            // If there's an active tab stored, activate it
+            if (activeTab) {
+                const tabButton = document.querySelector(`[data-bs-target="${activeTab}"]`);
+                if (tabButton) {
+                    new bootstrap.Tab(tabButton).show();
+                }
+            }
+
+            // Add event listeners to tab buttons to save the active tab to local storage
+            document.querySelectorAll('[data-bs-toggle="pill"]').forEach(tab => {
+                tab.addEventListener('shown.bs.tab', function (event) {
+                    const target = event.target.getAttribute('data-bs-target');
+                    localStorage.setItem('activeTab', target);
+                });
+            });
+        });
+    </script>
+	<script>
+        // APEXCHART
+        var options = {
+            series: [{
+                name: 'series1',
+                data: [31, 40, 28, 51, 42, 109, 100]
+            }, {
+                name: 'series2',
+                data: [11, 32, 45, 32, 34, 52, 41]
+            }],
+            chart: {
+                height: 350,
+                type: 'area'
+            },
+            dataLabels: {
+                enabled: false
+            },
+            stroke: {
+                curve: 'smooth'
+            },
+            xaxis: {
+                type: 'datetime',
+                categories: ["2018-09-19T00:00:00.000Z", "2018-09-19T01:30:00.000Z", "2018-09-19T02:30:00.000Z", "2018-09-19T03:30:00.000Z", "2018-09-19T04:30:00.000Z", "2018-09-19T05:30:00.000Z", "2018-09-19T06:30:00.000Z"]
+            },
+            tooltip: {
+                x: {
+                    format: 'dd/MM/yy HH:mm'
+                },
+            },
+        };
+
+        var chart = new ApexCharts(document.querySelector("#chart"), options);
+        chart.render();
+    </script>
+	<script>
+		
+		AOS.init({
+		
+			startEvent: 'DOMContentLoaded', // name of the event dispatched on the document, that AOS should initialize on
+			initClassName: 'aos-init', // class applied after initialization
+			animatedClassName: 'aos-animate', // class applied on animation
+			//useClassNames: false, // if true, will add content of `data-aos` as classes on scroll
+			//disableMutationObserver: false, // disables automatic mutations' detections (advanced)
+			
+			duration: 400, // values from 0 to 3000, with step 50ms
+			easing: 'ease', // default easing for AOS animations
+			once: false, // whether animation should happen only once - while scrolling down
+			mirror: false, // whether elements should animate out while scrolling past them
+			anchorPlacement: 'top-bottom', // defines which position of the element regarding to window should trigger the animation
+
+		});
+	</script>
+</body>
+</html>
+
+
+
+
+

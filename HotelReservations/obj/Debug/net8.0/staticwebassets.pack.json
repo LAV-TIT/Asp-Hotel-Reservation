@@ -1,0 +1,229 @@
+{
+  "Files": [
+    {
+      "Id": "D:\\SRC103d3p21\\HotelReservation\\HotelReservations\\wwwroot\\aos\\aos.css",
+      "PackagePath": "staticwebassets\\aos\\aos.css"
+    },
+    {
+      "Id": "D:\\SRC103d3p21\\HotelReservation\\HotelReservations\\wwwroot\\aos\\aos.js",
+      "PackagePath": "staticwebassets\\aos\\aos.js"
+    },
+    {
+      "Id": "D:\\SRC103d3p21\\HotelReservation\\HotelReservations\\wwwroot\\bootstrap\\css\\bootstrap.min.css",
+      "PackagePath": "staticwebassets\\bootstrap\\css\\bootstrap.min.css"
+    },
+    {
+      "Id": "D:\\SRC103d3p21\\HotelReservation\\HotelReservations\\wwwroot\\bootstrap\\js\\bootstrap.bundle.min.js",
+      "PackagePath": "staticwebassets\\bootstrap\\js\\bootstrap.bundle.min.js"
+    },
+    {
+      "Id": "D:\\SRC103d3p21\\HotelReservation\\HotelReservations\\wwwroot\\bootstrap\\js\\bootstrap.min.js",
+      "PackagePath": "staticwebassets\\bootstrap\\js\\bootstrap.min.js"
+    },
+    {
+      "Id": "D:\\SRC103d3p21\\HotelReservation\\HotelReservations\\wwwroot\\boxicons\\css\\animations.css",
+      "PackagePath": "staticwebassets\\boxicons\\css\\animations.css"
+    },
+    {
+      "Id": "D:\\SRC103d3p21\\HotelReservation\\HotelReservations\\wwwroot\\boxicons\\css\\animations.min.css",
+      "PackagePath": "staticwebassets\\boxicons\\css\\animations.min.css"
+    },
+    {
+      "Id": "D:\\SRC103d3p21\\HotelReservation\\HotelReservations\\wwwroot\\boxicons\\css\\boxicons.css",
+      "PackagePath": "staticwebassets\\boxicons\\css\\boxicons.css"
+    },
+    {
+      "Id": "D:\\SRC103d3p21\\HotelReservation\\HotelReservations\\wwwroot\\boxicons\\css\\boxicons.min.css",
+      "PackagePath": "staticwebassets\\boxicons\\css\\boxicons.min.css"
+    },
+    {
+      "Id": "D:\\SRC103d3p21\\HotelReservation\\HotelReservations\\wwwroot\\boxicons\\css\\transformations.css",
+      "PackagePath": "staticwebassets\\boxicons\\css\\transformations.css"
+    },
+    {
+      "Id": "D:\\SRC103d3p21\\HotelReservation\\HotelReservations\\wwwroot\\boxicons\\css\\transformations.min.css",
+      "PackagePath": "staticwebassets\\boxicons\\css\\transformations.min.css"
+    },
+    {
+      "Id": "D:\\SRC103d3p21\\HotelReservation\\HotelReservations\\wwwroot\\boxicons\\dist\\boxicons.min.js",
+      "PackagePath": "staticwebassets\\boxicons\\dist\\boxicons.min.js"
+    },
+    {
+      "Id": "D:\\SRC103d3p21\\HotelReservation\\HotelReservations\\wwwroot\\boxicons\\fonts\\boxicons.eot",
+      "PackagePath": "staticwebassets\\boxicons\\fonts\\boxicons.eot"
+    },
+    {
+      "Id": "D:\\SRC103d3p21\\HotelReservation\\HotelReservations\\wwwroot\\boxicons\\fonts\\boxicons.svg",
+      "PackagePath": "staticwebassets\\boxicons\\fonts\\boxicons.svg"
+    },
+    {
+      "Id": "D:\\SRC103d3p21\\HotelReservation\\HotelReservations\\wwwroot\\boxicons\\fonts\\boxicons.ttf",
+      "PackagePath": "staticwebassets\\boxicons\\fonts\\boxicons.ttf"
+    },
+    {
+      "Id": "D:\\SRC103d3p21\\HotelReservation\\HotelReservations\\wwwroot\\boxicons\\fonts\\boxicons.woff",
+      "PackagePath": "staticwebassets\\boxicons\\fonts\\boxicons.woff"
+    },
+    {
+      "Id": "D:\\SRC103d3p21\\HotelReservation\\HotelReservations\\wwwroot\\boxicons\\fonts\\boxicons.woff2",
+      "PackagePath": "staticwebassets\\boxicons\\fonts\\boxicons.woff2"
+    },
+    {
+      "Id": "D:\\SRC103d3p21\\HotelReservation\\HotelReservations\\wwwroot\\css\\main.css",
+      "PackagePath": "staticwebassets\\css\\main.css"
+    },
+    {
+      "Id": "D:\\SRC103d3p21\\HotelReservation\\HotelReservations\\wwwroot\\font-awesome\\css\\all.min.css",
+      "PackagePath": "staticwebassets\\font-awesome\\css\\all.min.css"
+    },
+    {
+      "Id": "D:\\SRC103d3p21\\HotelReservation\\HotelReservations\\wwwroot\\font-awesome\\js\\all.min.js",
+      "PackagePath": "staticwebassets\\font-awesome\\js\\all.min.js"
+    },
+    {
+      "Id": "D:\\SRC103d3p21\\HotelReservation\\HotelReservations\\wwwroot\\font-awesome\\sprites\\brands.svg",
+      "PackagePath": "staticwebassets\\font-awesome\\sprites\\brands.svg"
+    },
+    {
+      "Id": "D:\\SRC103d3p21\\HotelReservation\\HotelReservations\\wwwroot\\font-awesome\\sprites\\regular.svg",
+      "PackagePath": "staticwebassets\\font-awesome\\sprites\\regular.svg"
+    },
+    {
+      "Id": "D:\\SRC103d3p21\\HotelReservation\\HotelReservations\\wwwroot\\font-awesome\\sprites\\solid.svg",
+      "PackagePath": "staticwebassets\\font-awesome\\sprites\\solid.svg"
+    },
+    {
+      "Id": "D:\\SRC103d3p21\\HotelReservation\\HotelReservations\\wwwroot\\font-awesome\\webfonts\\fa-brands-400.ttf",
+      "PackagePath": "staticwebassets\\font-awesome\\webfonts\\fa-brands-400.ttf"
+    },
+    {
+      "Id": "D:\\SRC103d3p21\\HotelReservation\\HotelReservations\\wwwroot\\font-awesome\\webfonts\\fa-brands-400.woff2",
+      "PackagePath": "staticwebassets\\font-awesome\\webfonts\\fa-brands-400.woff2"
+    },
+    {
+      "Id": "D:\\SRC103d3p21\\HotelReservation\\HotelReservations\\wwwroot\\font-awesome\\webfonts\\fa-regular-400.ttf",
+      "PackagePath": "staticwebassets\\font-awesome\\webfonts\\fa-regular-400.ttf"
+    },
+    {
+      "Id": "D:\\SRC103d3p21\\HotelReservation\\HotelReservations\\wwwroot\\font-awesome\\webfonts\\fa-regular-400.woff2",
+      "PackagePath": "staticwebassets\\font-awesome\\webfonts\\fa-regular-400.woff2"
+    },
+    {
+      "Id": "D:\\SRC103d3p21\\HotelReservation\\HotelReservations\\wwwroot\\font-awesome\\webfonts\\fa-solid-900.ttf",
+      "PackagePath": "staticwebassets\\font-awesome\\webfonts\\fa-solid-900.ttf"
+    },
+    {
+      "Id": "D:\\SRC103d3p21\\HotelReservation\\HotelReservations\\wwwroot\\font-awesome\\webfonts\\fa-solid-900.woff2",
+      "PackagePath": "staticwebassets\\font-awesome\\webfonts\\fa-solid-900.woff2"
+    },
+    {
+      "Id": "D:\\SRC103d3p21\\HotelReservation\\HotelReservations\\wwwroot\\font-awesome\\webfonts\\fa-v4compatibility.ttf",
+      "PackagePath": "staticwebassets\\font-awesome\\webfonts\\fa-v4compatibility.ttf"
+    },
+    {
+      "Id": "D:\\SRC103d3p21\\HotelReservation\\HotelReservations\\wwwroot\\font-awesome\\webfonts\\fa-v4compatibility.woff2",
+      "PackagePath": "staticwebassets\\font-awesome\\webfonts\\fa-v4compatibility.woff2"
+    },
+    {
+      "Id": "D:\\SRC103d3p21\\HotelReservation\\HotelReservations\\wwwroot\\images\\avta.jpg",
+      "PackagePath": "staticwebassets\\images\\avta.jpg"
+    },
+    {
+      "Id": "D:\\SRC103d3p21\\HotelReservation\\HotelReservations\\wwwroot\\images\\avta2.jpg",
+      "PackagePath": "staticwebassets\\images\\avta2.jpg"
+    },
+    {
+      "Id": "D:\\SRC103d3p21\\HotelReservation\\HotelReservations\\wwwroot\\images\\avta3.jpg",
+      "PackagePath": "staticwebassets\\images\\avta3.jpg"
+    },
+    {
+      "Id": "D:\\SRC103d3p21\\HotelReservation\\HotelReservations\\wwwroot\\images\\employees\\upl_2025-03-04-14-22-59_avta.jpg",
+      "PackagePath": "staticwebassets\\images\\employees\\upl_2025-03-04-14-22-59_avta.jpg"
+    },
+    {
+      "Id": "D:\\SRC103d3p21\\HotelReservation\\HotelReservations\\wwwroot\\images\\employees\\upl_2025-03-04-15-08-30_avta2.jpg",
+      "PackagePath": "staticwebassets\\images\\employees\\upl_2025-03-04-15-08-30_avta2.jpg"
+    },
+    {
+      "Id": "D:\\SRC103d3p21\\HotelReservation\\HotelReservations\\wwwroot\\images\\rooms\\upl_2025-03-03-02-33-07_test3.jpg",
+      "PackagePath": "staticwebassets\\images\\rooms\\upl_2025-03-03-02-33-07_test3.jpg"
+    },
+    {
+      "Id": "D:\\SRC103d3p21\\HotelReservation\\HotelReservations\\wwwroot\\images\\rooms\\upl_2025-03-03-02-34-03_test2.jpg",
+      "PackagePath": "staticwebassets\\images\\rooms\\upl_2025-03-03-02-34-03_test2.jpg"
+    },
+    {
+      "Id": "D:\\SRC103d3p21\\HotelReservation\\HotelReservations\\wwwroot\\images\\rooms\\upl_2025-03-03-03-12-08_test4.jpg",
+      "PackagePath": "staticwebassets\\images\\rooms\\upl_2025-03-03-03-12-08_test4.jpg"
+    },
+    {
+      "Id": "D:\\SRC103d3p21\\HotelReservation\\HotelReservations\\wwwroot\\images\\rooms\\upl_2025-03-03-03-26-31_test.jpg",
+      "PackagePath": "staticwebassets\\images\\rooms\\upl_2025-03-03-03-26-31_test.jpg"
+    },
+    {
+      "Id": "D:\\SRC103d3p21\\HotelReservation\\HotelReservations\\wwwroot\\images\\rooms\\upl_2025-03-03-19-16-12_test4.jpg",
+      "PackagePath": "staticwebassets\\images\\rooms\\upl_2025-03-03-19-16-12_test4.jpg"
+    },
+    {
+      "Id": "D:\\SRC103d3p21\\HotelReservation\\HotelReservations\\wwwroot\\images\\rooms\\upl_2025-03-03-19-26-03_test2.jpg",
+      "PackagePath": "staticwebassets\\images\\rooms\\upl_2025-03-03-19-26-03_test2.jpg"
+    },
+    {
+      "Id": "D:\\SRC103d3p21\\HotelReservation\\HotelReservations\\wwwroot\\images\\roomtype\\upd_2025-03-01-13-28-32_test.jpg",
+      "PackagePath": "staticwebassets\\images\\roomtype\\upd_2025-03-01-13-28-32_test.jpg"
+    },
+    {
+      "Id": "D:\\SRC103d3p21\\HotelReservation\\HotelReservations\\wwwroot\\images\\roomtype\\upd_2025-03-01-13-29-24_test4.jpg",
+      "PackagePath": "staticwebassets\\images\\roomtype\\upd_2025-03-01-13-29-24_test4.jpg"
+    },
+    {
+      "Id": "D:\\SRC103d3p21\\HotelReservation\\HotelReservations\\wwwroot\\images\\roomtype\\upd_2025-03-01-13-29-43_test3.jpg",
+      "PackagePath": "staticwebassets\\images\\roomtype\\upd_2025-03-01-13-29-43_test3.jpg"
+    },
+    {
+      "Id": "D:\\SRC103d3p21\\HotelReservation\\HotelReservations\\wwwroot\\images\\roomtype\\upd_2025-03-01-23-37-53_test3.jpg",
+      "PackagePath": "staticwebassets\\images\\roomtype\\upd_2025-03-01-23-37-53_test3.jpg"
+    },
+    {
+      "Id": "D:\\SRC103d3p21\\HotelReservation\\HotelReservations\\wwwroot\\images\\roomtype\\upl_2025-03-03-20-34-26_RoomKing.jpg",
+      "PackagePath": "staticwebassets\\images\\roomtype\\upl_2025-03-03-20-34-26_RoomKing.jpg"
+    },
+    {
+      "Id": "D:\\SRC103d3p21\\HotelReservation\\HotelReservations\\wwwroot\\images\\uploads.svg",
+      "PackagePath": "staticwebassets\\images\\uploads.svg"
+    },
+    {
+      "Id": "D:\\SRC103d3p21\\HotelReservation\\HotelReservations\\wwwroot\\jquery-validate\\jquery.validate.min.js",
+      "PackagePath": "staticwebassets\\jquery-validate\\jquery.validate.min.js"
+    },
+    {
+      "Id": "D:\\SRC103d3p21\\HotelReservation\\HotelReservations\\wwwroot\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js",
+      "PackagePath": "staticwebassets\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js"
+    },
+    {
+      "Id": "D:\\SRC103d3p21\\HotelReservation\\HotelReservations\\wwwroot\\jquery\\jquery.min.js",
+      "PackagePath": "staticwebassets\\jquery\\jquery.min.js"
+    },
+    {
+      "Id": "D:\\SRC103d3p21\\HotelReservation\\HotelReservations\\wwwroot\\js\\main.js",
+      "PackagePath": "staticwebassets\\js\\main.js"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.HotelReservations.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.HotelReservations.props",
+      "PackagePath": "build\\HotelReservations.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.HotelReservations.props",
+      "PackagePath": "buildMultiTargeting\\HotelReservations.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.HotelReservations.props",
+      "PackagePath": "buildTransitive\\HotelReservations.props"
+    }
+  ],
+  "ElementsToRemove": []
+}
