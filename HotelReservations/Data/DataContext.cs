@@ -1,5 +1,6 @@
 ﻿using HotelReservations.Models;
 using Microsoft.EntityFrameworkCore;
+using Oracle.EntityFrameworkCore;
 namespace HotelReservations.Data
 {
     public sealed class DataContext : DbContext
@@ -18,7 +19,7 @@ namespace HotelReservations.Data
             base.OnModelCreating(modelBuilder);
         }
 
-        //public DbSet<Users> Users { get; set; }
+        public DbSet<Users> Users { get; set; }
         public DbSet<Department> Departments { get; set; }
         public DbSet<Employee> Employees { get; set; }
         public DbSet<Customer> Customers { get; set; }

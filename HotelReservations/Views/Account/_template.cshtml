@@ -1,0 +1,43 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
+    <link href="~/css/loginstyle.css" rel="stylesheet" />
+</head>
+
+<body>
+    @RenderBody()
+    <script>
+        function iconPass(element) {
+            const inputField = element.parentElement.querySelector('input');
+            const eyeSlashIcon = element.querySelector('.fa-eye-slash');
+            const eyeIcon = element.querySelector('.fa-eye');
+
+            if (inputField.type === 'password') {
+                inputField.type = 'text';
+                eyeSlashIcon.style.display = 'none';
+                eyeIcon.style.display = 'inline';
+            } else {
+                inputField.type = 'password';
+                eyeSlashIcon.style.display = 'inline';
+                eyeIcon.style.display = 'none';
+            }
+        }
+
+        // Initialize icons
+        document.addEventListener('DOMContentLoaded', () => {
+            const icons = document.querySelectorAll('.icon .fa-eye-slash, .icon .fa-eye');
+
+            icons.forEach(icon => {
+                if (icon.classList.contains('fa-eye')) {
+                    icon.style.display = 'none'; // Hide the open eye icon by default
+                }
+            });
+        });
+
+    </script>
+</body>
+</html>

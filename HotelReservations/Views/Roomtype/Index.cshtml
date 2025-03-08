@@ -1,12 +1,12 @@
 ﻿@model PaginatedList<RoomType>
 @{
     Layout = "_Layout";
-    ViewData["Title"] = "RoomType";
+    ViewData["Title"] = "Room Type";
 }
 
 <div class="d-flex pb-1" style="justify-content:space-between; align-items:center;">
-    <h4 class="ps-1">
-        <i class="fa-solid fa-user-tag"></i>@ViewData["Title"]
+    <h4 class="ps-1 d-flex align-items-center">
+        <i class='bx fs-1 bxs-door-open icon'></i>@ViewData["Title"]
     </h4>
     <hr />
     <ul class="breadcrumbs ps-0">
@@ -17,7 +17,7 @@
 </div>
 <div class="bg-white rounded-3 p-3 d-flex justify-content-between align-items-center">
     <a class="btn btn-success" asp-action="Create">
-        <i class="fa-solid fa-user-plus"></i> Create New
+        <i class="fa-solid fa-plus"></i> Create New
     </a>
     <div class="search-container">
         <form asp-action="Index" method="get">

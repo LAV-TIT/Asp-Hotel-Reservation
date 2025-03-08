@@ -1,0 +1,147 @@
+﻿* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+/* General container styles */
+.form-container {
+    max-width: 600px;
+    min-width: 350px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    opacity: 1;
+    transform: translateX(0);
+    transition: all 0.5s ease-in-out;
+
+    @starting-style {
+        opacity: 0;
+        transform: translateX(15px);
+    }
+}
+
+
+/* Row and column alignment */
+.row {
+    display: flex;
+    justify-content: center;
+}
+
+.col-md-4 {
+    width: 100%;
+}
+
+/* Heading style */
+h3 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+    font-family: 'Arial', sans-serif;
+}
+
+/* Form styles */
+.form-group {
+    margin-bottom: 15px;
+}
+
+label.control-label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    display: block;
+    color: #555;
+}
+
+.form-control {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+    .form-control:focus {
+        border-color: #007bff;
+        box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+    }
+
+/* Validation error styles */
+.text-danger {
+    color: #d9534f;
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+/* Submit button style */
+.btn-primary {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+    .btn-primary:hover {
+        background-color: #0056b3;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+/* Link style */
+a {
+    display: block;
+    text-align: center;
+    margin-top: 15px;
+    font-size: 14px;
+    color: #007bff;
+    text-decoration: none;
+}
+
+    a:hover {
+        text-decoration: underline;
+    }
+
+/* Input field with icons */
+.input-field {
+    position: relative;
+}
+
+    .input-field input {
+        padding-right: 40px;
+    }
+
+    .input-field .icon {
+        position: absolute;
+        top: 50%;
+        right: 0px;
+        transform: translateY(-50%);
+        cursor: pointer;
+        font-size: 18px;
+        color: #555;
+        display: none;
+        padding: 10px;
+    }
+
+    .input-field .close-eye {
+        display: inline;
+    }
+
+    .input-field .icon:hover {
+        color: #007bff;
+    }

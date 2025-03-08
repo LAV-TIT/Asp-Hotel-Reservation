@@ -69,6 +69,10 @@
       "PackagePath": "staticwebassets\\boxicons\\fonts\\boxicons.woff2"
     },
     {
+      "Id": "D:\\SRC103d3p21\\HotelReservation\\HotelReservations\\wwwroot\\css\\loginstyle.css",
+      "PackagePath": "staticwebassets\\css\\loginstyle.css"
+    },
+    {
       "Id": "D:\\SRC103d3p21\\HotelReservation\\HotelReservations\\wwwroot\\css\\main.css",
       "PackagePath": "staticwebassets\\css\\main.css"
     },
@@ -125,6 +129,10 @@
       "PackagePath": "staticwebassets\\font-awesome\\webfonts\\fa-v4compatibility.woff2"
     },
     {
+      "Id": "D:\\SRC103d3p21\\HotelReservation\\HotelReservations\\wwwroot\\images\\avatardefault.png",
+      "PackagePath": "staticwebassets\\images\\avatardefault.png"
+    },
+    {
       "Id": "D:\\SRC103d3p21\\HotelReservation\\HotelReservations\\wwwroot\\images\\avta.jpg",
       "PackagePath": "staticwebassets\\images\\avta.jpg"
     },
@@ -137,12 +145,64 @@
       "PackagePath": "staticwebassets\\images\\avta3.jpg"
     },
     {
+      "Id": "D:\\SRC103d3p21\\HotelReservation\\HotelReservations\\wwwroot\\images\\customers\\upl_2025-03-08-02-14-43_av1.jpg",
+      "PackagePath": "staticwebassets\\images\\customers\\upl_2025-03-08-02-14-43_av1.jpg"
+    },
+    {
+      "Id": "D:\\SRC103d3p21\\HotelReservation\\HotelReservations\\wwwroot\\images\\customers\\upl_2025-03-08-02-20-39_av.jpg",
+      "PackagePath": "staticwebassets\\images\\customers\\upl_2025-03-08-02-20-39_av.jpg"
+    },
+    {
+      "Id": "D:\\SRC103d3p21\\HotelReservation\\HotelReservations\\wwwroot\\images\\cute.jpg",
+      "PackagePath": "staticwebassets\\images\\cute.jpg"
+    },
+    {
       "Id": "D:\\SRC103d3p21\\HotelReservation\\HotelReservations\\wwwroot\\images\\employees\\upl_2025-03-04-14-22-59_avta.jpg",
       "PackagePath": "staticwebassets\\images\\employees\\upl_2025-03-04-14-22-59_avta.jpg"
     },
     {
       "Id": "D:\\SRC103d3p21\\HotelReservation\\HotelReservations\\wwwroot\\images\\employees\\upl_2025-03-04-15-08-30_avta2.jpg",
       "PackagePath": "staticwebassets\\images\\employees\\upl_2025-03-04-15-08-30_avta2.jpg"
+    },
+    {
+      "Id": "D:\\SRC103d3p21\\HotelReservation\\HotelReservations\\wwwroot\\images\\employees\\upl_2025-03-05-16-22-56_test4.jpg",
+      "PackagePath": "staticwebassets\\images\\employees\\upl_2025-03-05-16-22-56_test4.jpg"
+    },
+    {
+      "Id": "D:\\SRC103d3p21\\HotelReservation\\HotelReservations\\wwwroot\\images\\employees\\upl_2025-03-05-16-23-25_test4.jpg",
+      "PackagePath": "staticwebassets\\images\\employees\\upl_2025-03-05-16-23-25_test4.jpg"
+    },
+    {
+      "Id": "D:\\SRC103d3p21\\HotelReservation\\HotelReservations\\wwwroot\\images\\employees\\upl_2025-03-05-16-23-30_test4.jpg",
+      "PackagePath": "staticwebassets\\images\\employees\\upl_2025-03-05-16-23-30_test4.jpg"
+    },
+    {
+      "Id": "D:\\SRC103d3p21\\HotelReservation\\HotelReservations\\wwwroot\\images\\employees\\upl_2025-03-05-16-23-55_test4.jpg",
+      "PackagePath": "staticwebassets\\images\\employees\\upl_2025-03-05-16-23-55_test4.jpg"
+    },
+    {
+      "Id": "D:\\SRC103d3p21\\HotelReservation\\HotelReservations\\wwwroot\\images\\employees\\upl_2025-03-05-16-25-18_test4.jpg",
+      "PackagePath": "staticwebassets\\images\\employees\\upl_2025-03-05-16-25-18_test4.jpg"
+    },
+    {
+      "Id": "D:\\SRC103d3p21\\HotelReservation\\HotelReservations\\wwwroot\\images\\employees\\upl_2025-03-06-17-21-52_avta3.jpg",
+      "PackagePath": "staticwebassets\\images\\employees\\upl_2025-03-06-17-21-52_avta3.jpg"
+    },
+    {
+      "Id": "D:\\SRC103d3p21\\HotelReservation\\HotelReservations\\wwwroot\\images\\employees\\upl_2025-03-08-02-07-48_cute.jpg",
+      "PackagePath": "staticwebassets\\images\\employees\\upl_2025-03-08-02-07-48_cute.jpg"
+    },
+    {
+      "Id": "D:\\SRC103d3p21\\HotelReservation\\HotelReservations\\wwwroot\\images\\employees\\upl_2025-03-08-02-35-09_download (2).jpg",
+      "PackagePath": "staticwebassets\\images\\employees\\upl_2025-03-08-02-35-09_download (2).jpg"
+    },
+    {
+      "Id": "D:\\SRC103d3p21\\HotelReservation\\HotelReservations\\wwwroot\\images\\employees\\upl_2025-03-08-02-35-31_download (3).jpg",
+      "PackagePath": "staticwebassets\\images\\employees\\upl_2025-03-08-02-35-31_download (3).jpg"
+    },
+    {
+      "Id": "D:\\SRC103d3p21\\HotelReservation\\HotelReservations\\wwwroot\\images\\employees\\upl_2025-03-08-02-38-03_images.jpg",
+      "PackagePath": "staticwebassets\\images\\employees\\upl_2025-03-08-02-38-03_images.jpg"
     },
     {
       "Id": "D:\\SRC103d3p21\\HotelReservation\\HotelReservations\\wwwroot\\images\\rooms\\upl_2025-03-03-02-33-07_test3.jpg",
@@ -163,10 +223,6 @@
     {
       "Id": "D:\\SRC103d3p21\\HotelReservation\\HotelReservations\\wwwroot\\images\\rooms\\upl_2025-03-03-19-16-12_test4.jpg",
       "PackagePath": "staticwebassets\\images\\rooms\\upl_2025-03-03-19-16-12_test4.jpg"
-    },
-    {
-      "Id": "D:\\SRC103d3p21\\HotelReservation\\HotelReservations\\wwwroot\\images\\rooms\\upl_2025-03-03-19-26-03_test2.jpg",
-      "PackagePath": "staticwebassets\\images\\rooms\\upl_2025-03-03-19-26-03_test2.jpg"
     },
     {
       "Id": "D:\\SRC103d3p21\\HotelReservation\\HotelReservations\\wwwroot\\images\\roomtype\\upd_2025-03-01-13-28-32_test.jpg",

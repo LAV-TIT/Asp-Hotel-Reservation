@@ -7,8 +7,8 @@
   </PropertyGroup>
 	
   <ItemGroup>
-    <Folder Include="Services\" />
     <Folder Include="wwwroot\images\employees\" />
+    <Folder Include="wwwroot\images\customers\" />
     <Folder Include="wwwroot\images\roomtype\" />
   </ItemGroup>
 
@@ -23,6 +23,8 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="9.0.0" />
+    <PackageReference Include="Oracle.EntityFrameworkCore" Version="9.23.60" />
+    <PackageReference Include="Oracle.ManagedDataAccess.Core" Version="23.7.0" />
   </ItemGroup>
 
 </Project>

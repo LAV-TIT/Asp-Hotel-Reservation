@@ -1,0 +1,38 @@
+﻿@model LoginRequest
+@{
+    Layout = "_template";
+    ViewData["Title"] = "Login";
+}
+
+<div class="form-container">
+    <div class="row">
+        <div class="col-md-4">
+            <h3>Login your Account</h3>
+            <form asp-action="Login" asp-route-ReturnUrl="@ViewBag.ReturnUrl">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="UserName" class="control-label"></label>
+                    <input asp-for="UserName" class="form-control" />
+                    <span asp-validation-for="UserName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Password" class="control-label"></label>
+                    <div class="input-field">
+                        <input asp-for="Password" class="form-control" />
+                        <span onclick="iconPass(this);" class="icon close-eye">
+                            <i class="fa-solid fa-eye-slash"></i>
+                            <i class="fa-solid fa-eye"></i>
+                        </span>
+                    </div>
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Login" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+    <div>
+        <a asp-action="Register">No Account yet!</a>
+    </div>
+</div>

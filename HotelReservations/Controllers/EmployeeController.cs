@@ -28,7 +28,7 @@ namespace HotelReservations.Controllers
                 empsQuery = empsQuery
                     .Where(r =>
                         r.FirstName.ToLower().Contains(search.ToLower().Trim()) 
-                        || r.FirstName.ToLower().Contains(search.ToLower().Trim())
+                        || r.LastName.ToLower().Contains(search.ToLower().Trim())
                         || r.Gender.ToLower().Contains(search.ToLower().Trim())
                         || r.Position.ToLower().Contains(search.ToLower().Trim())
                         || r.Email.ToLower().Contains(search.ToLower().Trim())
@@ -45,6 +45,16 @@ namespace HotelReservations.Controllers
             ViewBag.PageIndex = pageIndex;
             ViewBag.PageSize = pageSize;
             ViewBag.TotalPages = pagination.TotalPages;
+
+            var departments = _context.Departments
+             .Select(d => new SelectListItem
+             {
+                 Value = d.DepartmentId.ToString(), // DepartmentId as the value
+                 Text = d.DepartmentName   // DepartmentName as the display text
+             }).ToList();
+
+            // Pass the departments to the view using ViewBag
+            ViewBag.Departments = departments;
 
             return View(pagination);
         }

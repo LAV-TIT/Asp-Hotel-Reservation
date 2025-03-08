@@ -3,7 +3,11 @@
 	ViewBag.title = "Dashboard";
 }
 
-<div class="block_content">
+<div class="block_content" data-aos="fade"
+	 data-aos-offset="200"
+	 data-aos-delay="50"
+	 data-aos-duration="500"
+	 data-aos-easing="ease-in-out">
 	<div style="display:flex; justify-content:space-between; align-items:center;">
 		<h1 class="title">Dashboard</h1>
 		<ul class="breadcrumbs ps-0">
@@ -16,35 +20,54 @@
 		<div class="card">
 			<div class="head">
 				<div>
-					<h2>50</h2>
-					<p>Rooms</p>
+					<h2>@ViewBag.TotalRoomsActive/@ViewBag.TotalRooms</h2>
+					<p >Rooms</p>
+					@* <p>Active Rooms (@ViewBag.TotalRoomsActive)</p> *@
 				</div>
 				<i class='bx bx-trending-up icon'></i>
 			</div>
-			<span class="progress" data-value="40%"></span>
-			<span class="label">40%</span>
+			<span class="progress" data-value="@ViewBag.RoomCount%"></span>
+			<div class="d-flex justify-content-between align-items-center">
+				<span class="label">@ViewBag.RoomCount%</span>
+				<a title="View list" href="/room" class="label">
+					<i class="fa-regular fa-eye"></i>
+				</a>
+			</div>
 		</div>
 		<div class="card">
 			<div class="head">
 				<div>
-					<h2>70</h2>
-					<p>Employees</p>
+					<h2>@ViewBag.TotalempsAcive/@ViewBag.TotalEmployees</h2>
+					<p">Employees</p>
+					@* <p>Employees (@ViewBag.TotalempsAcive) people</p> *@
 				</div>
 				<i class='bx bx-trending-down icon down'></i>
 			</div>
-			<span class="progress" data-value="60%"></span>
-			<span class="label">60%</span>
+			<span class="progress" data-value="@ViewBag.ActiveEmployeePercentage%"></span>
+			<div class="d-flex justify-content-between align-items-center">
+				<span class="label">@ViewBag.ActiveEmployeePercentage%</span>
+				<a title="View list" href="/employee" class="text-white label">
+					<i class="fa-regular fa-eye"></i>
+				</a>
+			</div>
 		</div>
 		<div class="card">
 			<div class="head">
 				<div>
-					<h2>465</h2>
+					<h2>
+						@ViewBag.CustsTotal
+					</h2>
 					<p>Customer</p>
 				</div>
 				<i class='bx bx-trending-up icon'></i>
 			</div>
-			<span class="progress" data-value="30%"></span>
-			<span class="label">30%</span>
+			<span class="progress" data-value="@ViewBag.CustsCountPercentage%"></span>
+			<div class="d-flex justify-content-between align-items-center">
+				<span class="label">@ViewBag.CustsCountPercentage%</span>
+				<a title="View list" href="/customer" class="text-white label">
+					<i class="fa-regular fa-eye"></i>
+				</a>
+			</div>
 		</div>
 		<div class="card">
 			<div class="head">

@@ -340,7 +340,7 @@ nav .form-group {
         border-radius: 5px;
         border: none;
         outline: none;
-        padding: 10px 36px 10px 16px;
+        padding: 6px 36px 6px 16px;
         transition: all .3s ease;
     }
 
@@ -788,6 +788,28 @@ nav .profile {
     }
 /* MAIN */
 /* CONTENT */
+
+.btn_side_close, .btn-modal-close {
+    padding: 5px;
+    border: 1px solid transparent;
+    width: 25px;
+    height: 25px;
+    display: grid;
+    place-content: center;
+    border-radius: 50px;
+    color: var(--red);
+    font-size: 20px;
+    cursor: pointer;
+    transform: rotate(45deg);
+    background: #fc3b5507;
+    transition: all 0.4s;
+}
+
+    .btn_side_close:hover, .btn-modal-close:hover {
+        background: #fc3b560f;
+        border: 1px solid;
+    }
+
 @media screen and (max-width: 768px) {
 
     nav .nav-link,
@@ -801,27 +823,7 @@ nav .profile {
         padding: 0 20px;
     }
 
-    .btn_side_close {
-        padding: 5px;
-        border: none;
-        width: 25px;
-        height: 25px;
-        display: grid;
-        place-content: center;
-        border-radius: 50px;
-        color: var(--red);
-        font-size: 20px;
-        cursor: pointer;
-        transform: rotate(45deg);
-        background: #fc3b5507;
-        transition: all 0.4s;
-    }
-
-        .btn_side_close:hover {
-            background: #fc3b560f;
-            border: 1px solid;
-        }
-
+    
     #sidebar {
         max-width: 0px;
     }
@@ -1038,6 +1040,16 @@ header nav .dropdownscroll ul li a div h6 {
     font-style: italic;
     font-size: 12px;
 }
+
+.list-info{
+    padding-left: 0;
+    li
+{
+    padding: 5px 0;
+    border-bottom: 1px solid gainsboro;
+}
+}
+
 /*.table-success {
     --bs-table-color: #8080f1;
     --bs-table-bg: #d1e7dd;

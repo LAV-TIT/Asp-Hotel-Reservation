@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualBasic;
+using System.Linq;
 
 namespace HotelReservations.Controllers
 {
@@ -26,7 +27,9 @@ namespace HotelReservations.Controllers
             {
                 roomsTypesQuery = roomsTypesQuery
                     .Where(r =>
-                        r.RoomTypeName.ToLower().Contains(search.ToLower()) || (r.Beds.ToString() != null)
+                        r.RoomTypeName.ToLower().Contains(search.ToLower()) 
+                        || (r.Beds.ToString().ToLower().Contains(search.ToLower()))
+                        || (r.Beds.ToString().ToLower().Contains(search.ToLower()))
                     );
             }
 

@@ -243,6 +243,7 @@ namespace HotelReservations.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("RoomName")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("RoomSize")
@@ -262,6 +263,46 @@ namespace HotelReservations.Migrations
                     b.HasIndex("RoomTypeId");
 
                     b.ToTable("Rooms");
+                });
+
+            modelBuilder.Entity("HotelReservations.Models.Users", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<byte[]>("Avatar")
+                        .HasMaxLength(5242880)
+                        .HasColumnType("varbinary(max)");
+
+                    b.Property<DateTime?>("Created")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("Modified")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasMaxLength(60)
+                        .HasColumnType("nvarchar(60)");
+
+                    b.Property<string>("RoleName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("Status")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("UserName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Users");
                 });
 
             modelBuilder.Entity("HotelReservations.Models.Employee", b =>

@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using HotelReservations.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace HotelReservations.Controllers
 {
@@ -48,32 +49,106 @@ namespace HotelReservations.Controllers
 		{
 			return View();
 		}
+
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-		//[Bind("Income", "Expense", "IdCard", "PasswordNo")]
-		public IActionResult Create(Customer custs)
-		{
-			_context.Customers.Add(custs);
-			int insertedRows = _context.SaveChanges();
-			return insertedRows > 0 ? RedirectToAction(nameof(Index)) : View();
-		}
-		[HttpGet]
+        //[Bind("Income", "Expense", "IdCard", "PasswordNo")]
+        public ActionResult Create(Customer custs, IFormFile photo)
+        {
+            if (ModelState.IsValid)
+            {
+                // Handle file upload
+                if (photo != null && photo.Length > 0)
+                {
+                    var uploadsFolder = Path.Combine("wwwroot", "images", "customers");
+                    if (!Directory.Exists(uploadsFolder))
+                    {
+                        Directory.CreateDirectory(uploadsFolder);
+                    }
+
+                    var uniqueFileName = "upl_" + DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss") + "_" + Path.GetFileName(photo.FileName);
+                    var filePath = Path.Combine(uploadsFolder, uniqueFileName);
+
+                    using (var fileStream = new FileStream(filePath, FileMode.Create))
+                    {
+                        photo.CopyTo(fileStream);
+                    }
+
+                    custs.Avatar = Path.Combine("images", "customers", uniqueFileName); // Save the relative path
+                }
+
+                _context.Customers.Add(custs);
+                int insertedRows = _context.SaveChanges();
+                return insertedRows > 0 ? RedirectToAction(nameof(Index)) : View();
+            }
+            return View(custs);
+        }
+
+        [HttpGet]
 		public IActionResult Edit(int id)
 		{
 			var custs = _context.Customers.Find(id);
 			if (custs is null) return NotFound();
 			return View("Edit", custs);
 		}
-		[HttpPost]
-		[ValidateAntiForgeryToken]
-		public IActionResult Edit(Customer custs)
-		{
-			_context.Customers.Update(custs);
-			int insertedRows = _context.SaveChanges();
-			return insertedRows > 0 ? RedirectToAction(nameof(Index)) : View();
-		}
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Edit(Customer custs, IFormFile photo)
+        {
+            // Retrieve the existing room to ensure RoomImage is populated
+            var existingRoom = _context.Customers.AsNoTracking().FirstOrDefault(r => r.CustomerId == custs.CustomerId);
+            if (existingRoom != null)
+            {
+                custs.Avatar = existingRoom.Avatar;
+            }
 
-		[HttpGet]
+            // Handle file upload if a new image is provided
+            if (photo != null && photo.Length > 0)
+            {
+                var uploadsFolder = Path.Combine("wwwroot", "images", "employees");
+                if (!Directory.Exists(uploadsFolder))
+                {
+                    Directory.CreateDirectory(uploadsFolder);
+                }
+
+                // Generate a unique file name
+                var uniqueFileName = "upl_" + DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss") + "_" + Path.GetFileName(photo.FileName);
+                var filePath = Path.Combine(uploadsFolder, uniqueFileName);
+
+                // Save the new image
+                using (var fileStream = new FileStream(filePath, FileMode.Create))
+                {
+                    photo.CopyTo(fileStream);
+                }
+
+                // Delete the old image if it exists
+                if (!string.IsNullOrEmpty(custs.Avatar))
+                {
+                    var oldImagePath = Path.Combine("wwwroot", custs.Avatar.TrimStart('/'));
+                    if (System.IO.File.Exists(oldImagePath))
+                    {
+                        System.IO.File.Delete(oldImagePath);
+                        Console.WriteLine("Old image deleted successfully."); // Debugging
+                    }
+                    else
+                    {
+                        Console.WriteLine("Old image does not exist."); // Debugging
+                    }
+                }
+
+                // Update the room's image path
+                custs.Avatar = Path.Combine("images", "employees", uniqueFileName);
+            }
+
+           
+            // Update the room in the database
+            _context.Customers.Update(custs);
+            int updatedRows = _context.SaveChanges();
+            return updatedRows > 0 ? RedirectToAction(nameof(Index)) : View(custs);
+
+        }
+
+        [HttpGet]
 		public IActionResult Details(int id)
 		{
 			var custs = _context.Customers.Find(id);

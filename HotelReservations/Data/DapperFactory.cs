@@ -1,4 +1,5 @@
 ﻿using Microsoft.Data.SqlClient;
+//using Oracle.ManagedDataAccess.Client;
 using System.Data;
 namespace HotelReservations.Data
 {
@@ -10,6 +11,7 @@ namespace HotelReservations.Data
 
             if (_connection == null)
             {
+                //_connection = new OracleConnection(config.GetConnectionString("DefaultConnection"));
                 _connection = new SqlConnection(config.GetConnectionString("DefaultConnection"));
             }
             return _connection;

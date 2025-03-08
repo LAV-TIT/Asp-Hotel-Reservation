@@ -14,7 +14,9 @@
           "Microsoft.EntityFrameworkCore": "9.0.2",
           "Microsoft.EntityFrameworkCore.SqlServer": "9.0.2",
           "Microsoft.EntityFrameworkCore.Tools": "9.0.2",
-          "Microsoft.VisualStudio.Web.CodeGeneration.Design": "9.0.0"
+          "Microsoft.VisualStudio.Web.CodeGeneration.Design": "9.0.0",
+          "Oracle.EntityFrameworkCore": "9.23.60",
+          "Oracle.ManagedDataAccess.Core": "23.7.0"
         },
         "runtime": {
           "HotelReservations.dll": {}
@@ -1893,6 +1895,32 @@
           }
         }
       },
+      "Oracle.EntityFrameworkCore/9.23.60": {
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore.Relational": "9.0.2",
+          "Oracle.ManagedDataAccess.Core": "23.7.0"
+        },
+        "runtime": {
+          "lib/net8.0/Oracle.EntityFrameworkCore.dll": {
+            "assemblyVersion": "9.0.23.1",
+            "fileVersion": "9.0.23.1"
+          }
+        }
+      },
+      "Oracle.ManagedDataAccess.Core/23.7.0": {
+        "dependencies": {
+          "System.Diagnostics.PerformanceCounter": "8.0.0",
+          "System.DirectoryServices.Protocols": "8.0.0",
+          "System.Formats.Asn1": "9.0.2",
+          "System.Security.Cryptography.Pkcs": "8.0.1"
+        },
+        "runtime": {
+          "lib/net8.0/Oracle.ManagedDataAccess.dll": {
+            "assemblyVersion": "23.1.0.0",
+            "fileVersion": "23.1.0.0"
+          }
+        }
+      },
       "System.ClientModel/1.0.0": {
         "dependencies": {
           "System.Memory.Data": "1.0.2",
@@ -2008,6 +2036,53 @@
             "assetType": "runtime",
             "assemblyVersion": "8.0.0.0",
             "fileVersion": "8.0.1024.46610"
+          }
+        }
+      },
+      "System.Diagnostics.PerformanceCounter/8.0.0": {
+        "dependencies": {
+          "System.Configuration.ConfigurationManager": "8.0.1"
+        },
+        "runtime": {
+          "lib/net8.0/System.Diagnostics.PerformanceCounter.dll": {
+            "assemblyVersion": "8.0.0.0",
+            "fileVersion": "8.0.23.53103"
+          }
+        },
+        "runtimeTargets": {
+          "runtimes/win/lib/net8.0/System.Diagnostics.PerformanceCounter.dll": {
+            "rid": "win",
+            "assetType": "runtime",
+            "assemblyVersion": "8.0.0.0",
+            "fileVersion": "8.0.23.53103"
+          }
+        }
+      },
+      "System.DirectoryServices.Protocols/8.0.0": {
+        "runtime": {
+          "lib/net8.0/System.DirectoryServices.Protocols.dll": {
+            "assemblyVersion": "8.0.0.0",
+            "fileVersion": "8.0.23.53103"
+          }
+        },
+        "runtimeTargets": {
+          "runtimes/linux/lib/net8.0/System.DirectoryServices.Protocols.dll": {
+            "rid": "linux",
+            "assetType": "runtime",
+            "assemblyVersion": "8.0.0.0",
+            "fileVersion": "8.0.23.53103"
+          },
+          "runtimes/osx/lib/net8.0/System.DirectoryServices.Protocols.dll": {
+            "rid": "osx",
+            "assetType": "runtime",
+            "assemblyVersion": "8.0.0.0",
+            "fileVersion": "8.0.23.53103"
+          },
+          "runtimes/win/lib/net8.0/System.DirectoryServices.Protocols.dll": {
+            "rid": "win",
+            "assetType": "runtime",
+            "assemblyVersion": "8.0.0.0",
+            "fileVersion": "8.0.23.53103"
           }
         }
       },
@@ -2982,6 +3057,20 @@
       "path": "nuget.versioning/6.11.0",
       "hashPath": "nuget.versioning.6.11.0.nupkg.sha512"
     },
+    "Oracle.EntityFrameworkCore/9.23.60": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-eF4929EV43fBV5xCrnbkcc6kHUFpetc2HKAWOy/YPca3ga1FpbBgFsADVIz1k/TO+AsJXIcztPFzQV7RE4CsIQ==",
+      "path": "oracle.entityframeworkcore/9.23.60",
+      "hashPath": "oracle.entityframeworkcore.9.23.60.nupkg.sha512"
+    },
+    "Oracle.ManagedDataAccess.Core/23.7.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-psGvNErUu9CO2xHplyp+4fSwDWv6oPKVUE/BRFTIeP2H2YvlstgBPa+Ze1xfAJuVIp2tT6alNtMNPFzAPmIn6Q==",
+      "path": "oracle.manageddataaccess.core/23.7.0",
+      "hashPath": "oracle.manageddataaccess.core.23.7.0.nupkg.sha512"
+    },
     "System.ClientModel/1.0.0": {
       "type": "package",
       "serviceable": true,
@@ -3072,6 +3161,20 @@
       "sha512": "sha512-n1ZP7NM2Gkn/MgD8+eOT5MulMj6wfeQMNS2Pizvq5GHCZfjlFMXV2irQlQmJhwA2VABC57M0auudO89Iu2uRLg==",
       "path": "system.diagnostics.eventlog/8.0.1",
       "hashPath": "system.diagnostics.eventlog.8.0.1.nupkg.sha512"
+    },
+    "System.Diagnostics.PerformanceCounter/8.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-lX6DXxtJqVGWw7N/QmVoiCyVQ+Q/Xp+jVXPr3gLK1jJExSn1qmAjJQeb8gnOYeeBTG3E3PmG1nu92eYj/TEjpg==",
+      "path": "system.diagnostics.performancecounter/8.0.0",
+      "hashPath": "system.diagnostics.performancecounter.8.0.0.nupkg.sha512"
+    },
+    "System.DirectoryServices.Protocols/8.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-puwJxURHDrYLGTQdsHyeMS72ClTqYa4lDYz6LHSbkZEk5hq8H8JfsO4MyYhB5BMMxg93jsQzLUwrnCumj11UIg==",
+      "path": "system.directoryservices.protocols/8.0.0",
+      "hashPath": "system.directoryservices.protocols.8.0.0.nupkg.sha512"
     },
     "System.Formats.Asn1/9.0.2": {
       "type": "package",
