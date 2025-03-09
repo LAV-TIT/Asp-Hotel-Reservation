@@ -9,13 +9,13 @@ namespace HotelReservations.Models
 		public int RoomId { get; set; }
 
 		[ForeignKey(nameof(RoomType))]
-		public required int RoomTypeId { get; set; }
+		public int RoomTypeId { get; set; }
 		[Required]
-		public required string? RoomName { get; set; }
+		public string? RoomName { get; set; }
 		public string? RoomImage { get; set; }
-		public required string? Description { get; set; }
-		public required int RoomSize { get; set; }
-		public required int Floor { get; set; }
+		public string? Description { get; set; }
+		public int RoomSize { get; set; }
+		public int Floor { get; set; }
 
         [Display(Name = "Room Status")]
         public bool? Status { get; set; } = true;
@@ -34,5 +34,6 @@ namespace HotelReservations.Models
 
 		// Navigation property for RoomType
 		public RoomType?RoomType { get; set; }
-	}
+        public ICollection<ReservationDetails>? ReservationDetails { get; set; }
+    }
 }

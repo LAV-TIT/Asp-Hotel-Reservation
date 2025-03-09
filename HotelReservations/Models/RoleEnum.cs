@@ -3,10 +3,7 @@
 	public enum RoleEnum
 	{
 	    Admin,
-		Account,
-		CreditOfficer,
 		Manager,
-		User,
-		General
+		User
 	}
 }

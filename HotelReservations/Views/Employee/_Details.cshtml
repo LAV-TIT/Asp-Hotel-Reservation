@@ -1,0 +1,154 @@
+﻿@model Employee
+@{
+	ViewData["Title"] = "Details Employee";
+}
+
+<div class="modal fade" id="detmodel_@Model.EmployeeId" tabindex="-1" aria-labelledby="@Model.EmployeeId" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="@Model.EmployeeId">@ViewData["Title"]</h5>
+                <button type="button" class="ms-auto btn-modal-close" data-bs-dismiss="modal" aria-label="Close"><i class='bx bx-plus'></i></button>
+            </div>
+            <div class="modal-body">
+                <div class="form-container p-0" data-aos="fade-in">
+                    <div class="row">
+                        <div class="col-lg-7">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group mb-4">
+                                        <label asp-for="FirstName" class="control-label"></label>
+                                        <input asp-for="FirstName" class="form-control" disabled />
+                                        <span asp-validation-for="FirstName" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group mb-4">
+                                        <label asp-for="LastName" class="control-label"></label>
+                                        <input asp-for="LastName" class="form-control" disabled />
+                                        <span asp-validation-for="LastName" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group mb-4">
+                                        <label asp-for="Gender" class="control-label"></label>
+                                        <select asp-for="Gender" class="form-control form-select" disabled>
+                                            <option value="">-- Select Gender --</option>
+                                            <option value="Male">Male</option>
+                                            <option value="Female">Female</option>
+                                        </select>
+                                        <span asp-validation-for="Gender" class="text-danger"></span>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label asp-for="Department" class="control-label"></label>
+                                    <div class="input-group">
+                                        <select asp-for="DepartmentId" class="form-control form-select" asp-items="ViewBag.departments" disabled>
+                                            <option value="">-- Select Department--</option>
+                                        </select>
+                                        <a class="btn" style="background: #8080f1;color: #fff;"
+                                           data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="New"
+                                           href="/department"><i class="fa-solid fa-plus"></i></a>
+                                    </div>
+                                    <span asp-validation-for="DepartmentId" class="text-danger mb-3 d-block "></span>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group mb-4">
+                                        <label asp-for="Position" class="control-label"></label>
+                                        <input asp-for="Position" class="form-control" disabled />
+                                        <span asp-validation-for="Position" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group mb-4">
+                                        <label asp-for="Salary" class="control-label"></label>
+                                        <input asp-for="Salary" class="form-control" disabled />
+                                        <span asp-validation-for="Salary" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group mb-4">
+                                        <label asp-for="HireDate" class="control-label"></label>
+                                        <input type="date" asp-for="HireDate" class="form-control" disabled />
+                                        <span asp-validation-for="HireDate" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group mb-4">
+                                        <label asp-for="Phone" class="control-label"></label>
+                                        <input asp-for="Phone" class="form-control" disabled />
+                                        <span asp-validation-for="Phone" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group mb-4">
+                                        <label asp-for="Email" class="control-label"></label>
+                                        <input asp-for="Email" class="form-control" disabled/>
+                                        <span asp-validation-for="Email" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group mb-4">
+                                        <label asp-for="Address" class="control-label"></label>
+                                        <textarea asp-for="Address" class="form-control" rows="1" disabled></textarea>
+                                        <span asp-validation-for="Address" class="text-danger"></span>
+                                    </div>
+                                </div>
+
+                                <div class="col-6">
+                                    <div class="form-group mb-4">
+                                        <label asp-for="Description" class="control-label"></label>
+                                        <textarea asp-for="Description" class="form-control" rows="1" disabled></textarea>
+                                        <span asp-validation-for="Description" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group mb-4">
+                                        <label asp-for="IsActive" class="form-check-label">Status</label>
+                                        <div class="form-check form-switch">
+                                            <label class="form-check-label" for="@Model.EmployeeId"></label>
+                                            <input class="form-check-input" type="checkbox" role="switch" id="@Model.EmployeeId" disabled 
+                                            @(Model.IsActive.HasValue && Model.IsActive.Value ? "checked" : "")>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-5">
+                            <div class="col-12">
+                                <div class="mb-2">
+                                    <label asp-for="Avatar" class="control-label"></label>
+                                    <input type="file" asp-for="Avatar" name="photo" id="photo" onchange="Photo(this)" class="form-control"
+                                           value="~/@Model.Avatar" disabled />
+                                    <span asp-validation-for="Avatar" class="text-danger"></span>
+                                </div>
+                            </div>
+                            @if (Model.Avatar is null)
+                            {
+                                <img src="~/images/uploads.svg" id="imagePreview" alt="Room Type Image" class="rounded-3 img-fluid" />
+                            }
+                            else
+                            {
+                                <img src="~/@Model.Avatar" id="imagePreview" alt="Room Type Image" class="rounded-3 img-fluid" />
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="form-group">
+                    <a class="px-2 py-1 text-primary" data-bs-toggle="modal" href="#model_@Model.EmployeeId" data-bs-whatever role="button">
+                        <i class="fa-solid fa-user-pen"></i>
+                    </a> |
+                    <a class="px-3 py-1 text-danger" data-bs-toggle="modal"
+                       href="#delmodel_@Model.EmployeeId"
+                       data-bs-whatever role="button">
+                        <i class="fa-solid fa-trash"></i>
+                    </a> |
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button> 
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

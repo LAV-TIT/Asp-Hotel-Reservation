@@ -30,6 +30,7 @@ html {
 body {
     background: var(--grey);
     overflow-x: hidden;
+    padding-right: 0 !important;
 }
 
 a {

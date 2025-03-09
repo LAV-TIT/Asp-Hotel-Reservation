@@ -105,7 +105,7 @@ namespace HotelReservations.Controllers
             // Handle file upload if a new image is provided
             if (photo != null && photo.Length > 0)
             {
-                var uploadsFolder = Path.Combine("wwwroot", "images", "employees");
+                var uploadsFolder = Path.Combine("wwwroot", "images", "customers");
                 if (!Directory.Exists(uploadsFolder))
                 {
                     Directory.CreateDirectory(uploadsFolder);
@@ -137,7 +137,7 @@ namespace HotelReservations.Controllers
                 }
 
                 // Update the room's image path
-                custs.Avatar = Path.Combine("images", "employees", uniqueFileName);
+                custs.Avatar = Path.Combine("images", "customers", uniqueFileName);
             }
 
            

@@ -43,6 +43,15 @@ namespace HotelReservations.Controllers
             ViewBag.PageSize = pageSize;
             ViewBag.TotalPages = paginatedRooms.TotalPages;
 
+            var roomtypes = _context.RoomTypes
+               .Select(d => new SelectListItem
+               {
+                   Value = d.RoomTypeId.ToString(), // RoomTypeId as the value
+                   Text = d.RoomTypeName  // RoomTypeName as the display text
+               })
+               .ToList();
+            ViewBag.roomTypes = roomtypes;
+
             return View(paginatedRooms);
         }
 

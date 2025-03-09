@@ -9,12 +9,12 @@ namespace HotelReservations.Data
         {}
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            //modelBuilder.Entity<Users>().Property(p => p.Id)
-            //    .ValueGeneratedOnAdd();
-            //modelBuilder.Entity<Users>().Property(p => p.Created)
-            //   .HasDefaultValueSql("GETDATE");
-            //modelBuilder.Entity<Users>().Property(p => p.Modified)
-            //   .HasDefaultValueSql("GETDATE");
+            modelBuilder.Entity<Users>().Property(p => p.Id)
+                .ValueGeneratedOnAdd();
+            modelBuilder.Entity<Users>().Property(p => p.Created)
+               .HasDefaultValueSql("GETDATE");
+            modelBuilder.Entity<Users>().Property(p => p.Modified)
+               .HasDefaultValueSql("GETDATE");
 
             base.OnModelCreating(modelBuilder);
         }

@@ -14,14 +14,13 @@ namespace HotelReservations.Controllers
             _context = dataContext;
         }
         
-        [HttpGet]
         public async Task<IActionResult> Index(string search, int pageIndex = 1, int pageSize = 4)
         {
             // Fetch all Employees ordered by RoomId
             var empsQuery = _context.Employees
                 .OrderByDescending(e => e.EmployeeId)
                 .Include(e => e.Department)
-                .AsTracking();
+                .AsNoTracking();
 
             if (!string.IsNullOrEmpty(search))
             {
@@ -101,8 +100,16 @@ namespace HotelReservations.Controllers
                 }
 
                 _context.Employees.Add(emps);
-                int insertedRows = _context.SaveChanges();
-                return insertedRows > 0 ? RedirectToAction(nameof(Index)) : View();
+                _context.SaveChanges();
+                return RedirectToAction(nameof(Index));
+            }
+            else
+            {
+                var errors = ModelState.Values.SelectMany(v => v.Errors);
+                foreach (var error in errors)
+                {
+                    Console.WriteLine(error.ErrorMessage);
+                }
             }
 
             // If the model state is invalid, re-populate the roomtype dropdown
@@ -202,40 +209,53 @@ namespace HotelReservations.Controllers
 
 		}
 
-		//===========
-		
-		[HttpGet]
-		public IActionResult Details(int id)
-		{
-			var emps = _context.Employees
-			.Include(e => e.Department) // Include Department data
-			.FirstOrDefault(e => e.EmployeeId == id);
+        //===========
 
-			if (emps is null) return NotFound();
+        [HttpGet]
+        public IActionResult Details(int id)
+        {
+            var emps = _context.Employees
+            .Include(e => e.Department) // Include Department data
+            .FirstOrDefault(e => e.EmployeeId == id);
 
-			return View("Details", emps);
-		}
+            if (emps is null) return NotFound();
 
-		[HttpGet]
-		public IActionResult Delete(int id)
-		{
-			var emps = _context.Employees
-			.Include(e => e.Department) // Include Department data
-			.FirstOrDefault(e => e.EmployeeId == id);
+            return View("Details", emps);
+        }
 
-			if (emps is null) return NotFound();
+        [HttpGet]
+        public IActionResult Delete(int id)
+        {
+            var emps = _context.Employees
+            .Include(e => e.Department).AsNoTracking() // Include Department data
+            .FirstOrDefault(e => e.EmployeeId == id);
 
-			return View("Delete", emps);
+            if (emps is null) return NotFound();
 
-		}
+            return View(emps);
 
-		[HttpPost]
-		[ValidateAntiForgeryToken]
-		[ActionName("Delete")]
-		public IActionResult ConfirmDelete(int id)
-		{
-			var emps = _context.Employees.Find(id);
-			if (emps is null) return NotFound();
+            //var emps = _context.Rooms.Find(id);
+            //if (rooms is null) return NotFound();
+            //var roomtypes = _context.RoomTypes
+            //    .Select(d => new SelectListItem
+            //    {
+            //        Value = d.RoomTypeId.ToString(),
+            //        Text = d.RoomTypeName
+            //    })
+            //    .ToList();
+            //// Pass the departments to the view using ViewBag
+            //ViewBag.roomTypes = roomtypes;
+            //return View("Delete", rooms);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [ActionName("Delete")]
+        public IActionResult ConfirmDelete(int id)
+
+        {
+            var emps = _context.Employees.Find(id);
+            if (emps is null) return NotFound();
 
             // Delete the associated image file
             if (!string.IsNullOrEmpty(emps.Avatar))
@@ -246,10 +266,34 @@ namespace HotelReservations.Controllers
                     System.IO.File.Delete(filePath);
                 }
             }
-            _context.Employees.Remove(emps);
-			int insertedRows = _context.SaveChanges();
-			return insertedRows > 0 ? RedirectToAction(nameof(Index)) : View();
-		}
 
-	}
+            _context.Employees.Remove(emps);
+            int insertedRows = _context.SaveChanges();
+            return insertedRows > 0 ? RedirectToAction(nameof(Index)) : View();
+
+
+           // var emps = _context.Employees
+           //.Include(e => e.Department)
+           //.FirstOrDefault(e => e.EmployeeId == id);
+
+           // if (ModelState.IsValid)
+           // {
+           //     if (!string.IsNullOrEmpty(emps?.Avatar))
+           //     {
+           //         var filePath = Path.Combine("wwwroot", emps.Avatar);
+           //         if (System.IO.File.Exists(filePath))
+           //         {
+           //             System.IO.File.Delete(filePath);
+           //         }
+           //     }
+           //     _context.Employees.Remove(emps);
+           //     _context.SaveChanges();
+           //     return RedirectToAction(nameof(Index));
+           // }
+
+           // return View(emps);
+            
+        }
+
+    }
 }

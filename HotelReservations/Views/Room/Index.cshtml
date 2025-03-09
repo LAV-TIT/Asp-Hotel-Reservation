@@ -15,9 +15,9 @@
     </ul>
 </div>
 <div class="bg-white rounded-3 p-3 d-flex justify-content-between align-items-center">
-    <a class="btn btn-success" asp-action="Create">
+    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#createModal">
         <i class="fa-solid fa-plus"></i> Create New
-    </a>
+    </button>
     <div class="search-container">
         <form asp-action="Index" method="get">
             <div class="form-group me-4">
@@ -69,8 +69,7 @@
                 <div class="col-md-6 col-lg-4 col-xl-3 p-2">
                     <div class="card h-100 rounded-3 p-2">
                         <div class="rounded-1 overflow-hidden card-img-top">
-                            <a asp-action="details"
-                               asp-route-id="@item.RoomId">
+                            <a data-bs-toggle="modal" href="#model_@item.RoomId" data-bs-whatever role="button">
                             <img src="@Html.DisplayFor(modelItem => item.RoomImage)" class="img-fluid"
                                  alt=" @Html.DisplayFor(modelItem => item.RoomName)">
                             </a>
@@ -94,12 +93,15 @@
                             </p>
                         </div>
                         <div style="padding: 5px 0;" class="text-end card-body">
-                            <a class="px-2 py-1" asp-action="Edit"
-                               asp-route-id="@item.RoomId"><i class="fa-regular fa-pen-to-square"></i></a>
-                            <a class="px-2 py-1 text-success"
-                               asp-action="Details" asp-route-id="@item.RoomId"><i class="fa-regular fa-eye"></i></a>
-                            <a class="card-link px-2 text-danger"
-                               asp-action="Delete" asp-route-id="@item.RoomId"><i class="fa-solid fa-trash"></i></a>
+                            <a class="px-2 py-1 text-primary" data-bs-toggle="modal" href="#model_@item.RoomId" data-bs-whatever role="button">
+                                <i class="fa-regular fa-pen-to-square"></i>
+                            </a>
+                            <a class="px-2 py-1 text-success" data-bs-toggle="modal" href="#detmodel_@item.RoomId" data-bs-whatever role="button">
+                                <i class="fa-regular fa-eye"></i>
+                            </a>
+                            <a class="px-2 py-1 text-danger" data-bs-toggle="modal" href="#delmodel_@item.RoomId" data-bs-whatever role="button">
+                                <i class="fa-solid fa-trash"></i>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -155,8 +157,8 @@
                                 @Html.DisplayFor(modelItem => item.RoomId)
                             </td>
                             <td>
-                                <a style="display: inline-table" asp-action="edit"
-                               asp-route-id="@item.RoomId">
+                                <a style="display: inline-table" data-bs-toggle="modal" href="#detmodel_@item.RoomId"
+                                   data-bs-whatever role="button">
                                 <img style="width: 50px;height: 50px;border-radius: 50px;object-fit: cover;"
                                      src="@Html.DisplayFor(modelItem => item.RoomImage)" class="img-fluid"
                                      alt="@Html.DisplayFor(modelItem => item.RoomImage)">
@@ -194,14 +196,26 @@
                                 </button>
                                 <ul class="dropdown-menu">
                                     <li>
-                                        <a class="px-3 py-1 d-flex justify-content-between align-items-center" asp-action="Edit" asp-route-id="@item.RoomId">Edit <i class="fa-regular fa-pen-to-square"></i></a>
+                                        <a class="px-3 py-1 d-flex justify-content-between align-items-center" data-bs-toggle="modal"
+                                           href="#model_@item.RoomId"
+                                           data-bs-whatever role="button">
+                                            Edit <i class="fa-regular fa-pen-to-square"></i>
+                                        </a>
                                     </li>
                                     <li>
-                                        <a class="px-3 py-1 d-flex justify-content-between align-items-center text-success" asp-action="Details" asp-route-id="@item.RoomId">Details <i class="fa-regular fa-eye"></i></a>
+                                        <a class="px-3 py-1 d-flex justify-content-between align-items-center text-success" data-bs-toggle="modal"
+                                           href="#detmodel_@item.RoomId"
+                                           data-bs-whatever role="button">
+                                            Details <i class="fa-regular fa-eye"></i>
+                                        </a>
                                     </li>
                                     <li><hr class="dropdown-divider"></li>
                                     <li>
-                                        <a class="px-3 py-1 d-flex justify-content-between align-items-center text-danger" asp-action="Delete" asp-route-id="@item.RoomId">Delete <i class="fa-solid fa-trash"></i></a>
+                                        <a class="px-3 py-1 d-flex justify-content-between align-items-center text-danger" data-bs-toggle="modal"
+                                           href="#delmodel_@item.RoomId"
+                                           data-bs-whatever role="button">
+                                            Delete <i class="fa-solid fa-trash"></i>
+                                        </a>
                                     </li>
                                 </ul>
                             </td>
@@ -257,3 +271,13 @@
     </div>
 </div>
 
+
+<!-- Modal for Create -->
+<partial name="_Create" model="new Rooms()" />
+<!-- Modal for Edit -->
+@foreach (var item in Model)
+{
+    <partial name="_Edit" model="item" />
+    <partial name="_Details" model="item" />
+    <partial name="_Delete" model="item" />
+}

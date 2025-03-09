@@ -46,9 +46,6 @@ namespace HotelReservations.Controllers
 
 
 
-
-
-
 			return View();
 
 			

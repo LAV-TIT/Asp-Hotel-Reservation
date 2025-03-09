@@ -1,6 +1,7 @@
 //======== oracle connect db ==============
 
 using HotelReservations.Data;
+using HotelReservations.Services;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
 using Oracle.EntityFrameworkCore;
@@ -8,11 +9,13 @@ using Oracle.EntityFrameworkCore;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add Services
+
 builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<DapperFactory>();
 
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection")
     ?? throw new Exception("Invalid connection string");
+
 
 builder.Services.AddDbContext<DataContext>(options =>
 {
@@ -21,7 +24,7 @@ builder.Services.AddDbContext<DataContext>(options =>
     // connect with sql server
     options.UseSqlServer(connectionString);
 });
-
+builder.Services.AddScoped<IUserService, UserServiceImpl>();
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie(option =>

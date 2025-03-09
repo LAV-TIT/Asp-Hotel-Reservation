@@ -1,0 +1,142 @@
+﻿@model Employee
+@{
+    ViewData["Title"] = "Create Employee";
+}
+
+<form asp-action="Create" method="post" enctype="multipart/form-data">
+    <div class="modal fade" id="createModal" tabindex="-1" aria-labelledby="createModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="createModalLabel">Create New Department</h5>
+                    <button type="button" class="ms-auto btn-modal-close" data-bs-dismiss="modal" aria-label="Close"><i class='bx bx-plus'></i></button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-container p-0" data-aos="fade-in">
+                        <div class="row">
+                            <div class="col-lg-7">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group mb-4">
+                                            <label asp-for="FirstName" class="control-label"></label>
+                                            <input asp-for="FirstName" class="form-control" required/>
+                                            <span asp-validation-for="FirstName" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group mb-4">
+                                            <label asp-for="LastName" class="control-label"></label>
+                                            <input asp-for="LastName" class="form-control" required/>
+                                            <span asp-validation-for="LastName" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group mb-4">
+                                            <label asp-for="Gender" class="control-label"></label>
+                                            <select asp-for="Gender" class="form-control form-select" required>
+                                                <option value="">-- Select Gender --</option>
+                                                <option value="Male">Male</option>
+                                                <option value="Female">Female</option>
+                                            </select>
+                                            <span asp-validation-for="Gender" class="text-danger"></span>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <label asp-for="Department" class="control-label"></label>
+                                        <div class="input-group">
+                                            <select asp-for="DepartmentId" class="form-control form-select" asp-items="ViewBag.departments">
+                                                <option value="">-- Select Department --</option>
+                                            </select>
+                                            <a class="btn" style="background: #8080f1;color: #fff;"
+                                               data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="New"
+                                               href="/department"><i class="fa-solid fa-plus"></i></a>
+                                        </div>
+                                        <span asp-validation-for="DepartmentId" class="text-danger mb-3 d-block "></span>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group mb-4">
+                                            <label asp-for="Position" class="control-label"></label>
+                                            <input asp-for="Position" class="form-control" required />
+                                            <span asp-validation-for="Position" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group mb-4">
+                                            <label asp-for="Salary" class="control-label"></label>
+                                            <input asp-for="Salary" class="form-control" />
+                                            <span asp-validation-for="Salary" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group mb-4">
+                                            <label asp-for="HireDate" class="control-label"></label>
+                                            <input type="date" asp-for="HireDate" class="form-control" />
+                                            <span asp-validation-for="HireDate" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group mb-4">
+                                            <label asp-for="Phone" class="control-label"></label>
+                                            <input asp-for="Phone" class="form-control" />
+                                            <span asp-validation-for="Phone" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group mb-4">
+                                            <label asp-for="Email" class="control-label"></label>
+                                            <input asp-for="Email" class="form-control" />
+                                            <span asp-validation-for="Email" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group mb-4">
+                                            <label asp-for="Address" class="control-label"></label>
+                                            <textarea asp-for="Address" class="form-control" rows="1"></textarea>
+                                            <span asp-validation-for="Address" class="text-danger"></span>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-6">
+                                        <div class="form-group mb-4">
+                                            <label asp-for="Description" class="control-label"></label>
+                                            <textarea asp-for="Description" class="form-control" rows="1"></textarea>
+                                            <span asp-validation-for="Description" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group mb-3">
+                                            <label asp-for="IsActive" class="control-label"></label>
+                                            <select asp-for="IsActive" class="form-control">
+                                                <option value="">-- Select Status --</option>
+                                                <option value="true">Active</option>
+                                                <option value="false">Inactive</option>
+                                            </select>
+                                            <span asp-validation-for="IsActive" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-5">
+                                <div class="col-12">
+                                    <div class="mb-2">
+                                        <label asp-for="Avatar" class="control-label"></label>
+                                        <input type="file" asp-for="Avatar" name="photo" id="photo" class="form-control" required />
+                                        <span asp-validation-for="Avatar" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <img style="width: 400px;" src="~/images/uploads.svg" id="imagePreview" alt="Image" class="rounded-3 img-fluid" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-success">Create</button> |
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

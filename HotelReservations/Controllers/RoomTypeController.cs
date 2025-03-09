@@ -74,11 +74,15 @@ namespace HotelReservations.Controllers
 
                     roomtype.RoomTypeImage = Path.Combine("images", "roomtype", uniqueFileName); // Save the relative path
                 }
-
+                if (roomtype.Status == null)
+                {
+                    roomtype.Status = true; // Default to true if null
+                }
                 _context.RoomTypes.Add(roomtype);
                 int insertedRows = _context.SaveChanges();
-                return insertedRows > 0 ? RedirectToAction(nameof(Index)) : View();
+                return insertedRows > 0 ? RedirectToAction(nameof(Index)) : View(roomtype);
             }
+
 
 			return View(roomtype); // Return the view with validation errors
 		}
@@ -147,7 +151,10 @@ namespace HotelReservations.Controllers
 
             // Pass the departments to the view using ViewBag
             ViewBag.roomTypes = roomtypes;
-
+            if (roomtype.Status == null)
+            {
+                roomtype.Status = true; // Default to true if null
+            }
             // Update the room in the database
             _context.RoomTypes.Update(roomtype);
             int updatedRows = _context.SaveChanges();

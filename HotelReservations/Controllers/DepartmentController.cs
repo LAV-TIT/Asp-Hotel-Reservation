@@ -20,7 +20,7 @@ namespace HotelReservations.Controllers
         public async Task<IActionResult> Index(string search, int pageIndex = 1, int pageSize = 4)
         {
             // Fetch all Employees ordered by RoomId
-            var deptsQuery = _context.Departments.OrderByDescending(e => e.DepartmentId).AsTracking();
+            var deptsQuery = _context.Departments.OrderByDescending(e => e.DepartmentId).AsNoTracking();
 
             if (!string.IsNullOrEmpty(search))
             {

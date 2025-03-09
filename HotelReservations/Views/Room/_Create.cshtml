@@ -1,0 +1,117 @@
+﻿@model Rooms
+@{
+    ViewData["Title"] = "Create Room";
+}
+
+<form asp-action="Create" method="post" enctype="multipart/form-data">
+    <div class="modal fade" id="createModal" tabindex="-1" aria-labelledby="createModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="createModalLabel">@ViewData["Title"]</h5>
+                    <button type="button" class="ms-auto btn-modal-close" data-bs-dismiss="modal" aria-label="Close"><i class='bx bx-plus'></i></button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-container p-0" data-aos="fade-in">
+                        <div class="row">
+                            <div class="col-lg-7">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group mb-3">
+                                            <label asp-for="RoomName" class="control-label"></label>
+                                            <input asp-for="RoomName" class="form-control" required/>
+                                            <span asp-validation-for="RoomName" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label asp-for="RoomType" class="control-label"></label>
+                                        <div class="input-group mb-3">
+                                            <select asp-for="RoomTypeId" class="form-control form-select" asp-items="ViewBag.roomTypes" required>
+                                                <option value="">-- Select RoomType --</option>
+                                            </select>
+                                            <a class="btn" style="background: #8080f1;color: #fff;"
+                                               data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="New Roomtype"
+                                               href="/roomtype"><i class="fa-solid fa-plus"></i></a>
+                                        </div>
+                                        <span asp-validation-for="RoomTypeId" class="text-danger mb-3 d-block "></span>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group mb-3">
+                                            <label asp-for="RoomSize" class="control-label"></label>
+                                            <input asp-for="RoomSize" class="form-control" min="0" />
+                                            <span asp-validation-for="RoomSize" class="text-danger"></span>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group mb-3">
+                                            <label asp-for="Capacity" class="control-label"></label>
+                                            <input asp-for="Capacity" class="form-control" min="0" />
+                                            <span asp-validation-for="Capacity" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group mb-3">
+                                            <label asp-for="PricePerNight" class="control-label" ></label>
+                                            <input asp-for="PricePerNight" class="form-control" min="0" />
+                                            <span asp-validation-for="PricePerNight" class="text-danger"></span>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group mb-3">
+                                            <label asp-for="Floor" class="control-label"></label>
+                                            <input asp-for="Floor" class="form-control" min="0"/>
+                                            <span asp-validation-for="Floor" class="text-danger"></span>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group mb-3">
+                                            <label asp-for="Amenities" class="control-label"></label>
+                                            <textarea asp-for="Amenities" class="form-control"></textarea>
+                                            <span asp-validation-for="Amenities" class="text-danger"></span>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-6">
+                                        <div class="form-group mb-3">
+                                            <label asp-for="Description" class="control-label"></label>
+                                            <textarea asp-for="Description" class="form-control"></textarea>
+                                            <span asp-validation-for="Description" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group mb-3">
+                                            <label asp-for="Status" class="form-check-label">Active</label>
+                                            <div class="form-check">
+                                                <input asp-for="Status" class="form-check-input" />
+                                                <span asp-validation-for="Status" class="text-danger"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-5">
+                                <div class="col-12">
+                                    <div class="mb-2">
+                                        <label asp-for="RoomImage" class="control-label"></label>
+                                        <input type="file" asp-for="RoomImage" name="photo" id="photo" class="form-control" required />
+                                        <span asp-validation-for="RoomImage" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <img style="width: 400px;" src="~/images/uploads.svg" id="imagePreview" alt="Room Type Image" class="rounded-3 img-fluid" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-success">Create</button> |
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
