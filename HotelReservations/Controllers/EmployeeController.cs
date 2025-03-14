@@ -14,7 +14,7 @@ namespace HotelReservations.Controllers
             _context = dataContext;
         }
         
-        public async Task<IActionResult> Index(string search, int pageIndex = 1, int pageSize = 4)
+        public async Task<IActionResult> Index(string search, int? deptId, int pageIndex = 1, int pageSize = 4)
         {
             // Fetch all Employees ordered by RoomId
             var empsQuery = _context.Employees
@@ -35,12 +35,18 @@ namespace HotelReservations.Controllers
                         || r.Phone.ToString().ToLower().Contains(search.ToLower().Trim())
                     );
             }
-
+            
+            // Apply dempartment filter
+            if (deptId.HasValue && deptId > 0)
+            {
+                empsQuery = empsQuery.Where(r => r.DepartmentId == deptId);
+            }
             // Paginate the results
             var pagination = await PaginatedList<Employee>.CreateAsync(empsQuery, pageIndex, pageSize);
 
             // Pass the search term and pagination info to the view
             ViewBag.Search = search;
+            ViewBag.departmentId = deptId;
             ViewBag.PageIndex = pageIndex;
             ViewBag.PageSize = pageSize;
             ViewBag.TotalPages = pagination.TotalPages;

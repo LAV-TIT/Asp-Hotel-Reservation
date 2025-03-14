@@ -6,7 +6,7 @@ using System.Security.Claims;
 using HotelReservations.Services;
 namespace HotelReservations.Services
 {
-    public sealed class UserServiceImpl: IUserService
+    public sealed class UserServiceImpl : IUserService
     {
         private readonly DataContext _context;
         private readonly IHttpContextAccessor _httpcontext;
@@ -25,7 +25,6 @@ namespace HotelReservations.Services
                 var httpContext = _httpcontext.HttpContext;
                 await httpContext!.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
                 return true;
-
             }
             catch (Exception ex)
             {

@@ -13,12 +13,14 @@ namespace HotelReservations.Models
 		[Required]
 		public string? RoomName { get; set; }
 		public string? RoomImage { get; set; }
-		public string? Description { get; set; }
+        [Required]
+        public string? Description { get; set; }
 		public int RoomSize { get; set; }
 		public int Floor { get; set; }
 
         [Display(Name = "Room Status")]
-        public bool? Status { get; set; } = true;
+        [Required]
+        public string? Status { get; set; }
 
 		[Column(TypeName = "decimal(18, 2)")]
 		public decimal PricePerNight { get; set; }

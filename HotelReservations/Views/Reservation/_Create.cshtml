@@ -1,0 +1,136 @@
+﻿@model Reservation
+@{
+    ViewData["Title"] = "Make Reservation";
+}
+
+<form id="eventForm" asp-action="Create" method="post" enctype="multipart/form-data">
+    <div class="modal fade" id="eventModal" tabindex="-1" aria-labelledby="eventModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header py-2">
+                    <h5 class="modal-title" id="eventModalLabel">@ViewData["Title"]</h5>
+                    <button type="button" class="ms-auto btn-modal-close" data-bs-dismiss="modal" aria-label="Close"><i class='bx bx-plus'></i></button>
+                </div>
+                <div class="modal-body py-0">
+                   
+                    <div class="form-container p-0" data-aos="fade-in">
+                        <div class="row" style="background: #8080f12b;">
+                            <div class="col-lg-6">
+                                <div class="row">
+
+                                    <div class="col-lg-12">
+                                        <div class="form-group mb-3">
+                                            Infomation
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <label asp-for="CustomerId" class="control-label">Customer</label>
+                                        <div class="input-group mb-3">
+                                            <select asp-for="CustomerId" class="form-control form-select" id="CustomerId" name="CustomerId" required>
+                                                <option value="">-- Select Customer --</option>
+                                                @foreach (var customer in ViewBag.Customers)
+                                                {
+                                                    <option value="@customer.Value" data-name="@customer.Text">@customer.Text</option>
+                                                }
+                                            </select>
+                                            <a class="btn" style="background: #8080f1; color: #fff;" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="New"
+                                               href="/customer"><i class="fa-solid fa-plus"></i></a>
+                                        </div>
+                                        <span asp-validation-for="CustomerId" class="text-danger mb-3 d-block "></span>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="form-group mb-3">
+                                            <label asp-for="CheckInDate" class="control-label"></label>
+                                            <input asp-for="CheckInDate" class="form-control" id="CheckInDate" name="CheckInDate" required>
+                                            <span asp-validation-for="CheckInDate" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group mb-3">
+                                            <label asp-for="CheckOutDate" class="control-label"></label>
+                                            <input asp-for="CheckOutDate" class="form-control" id="CheckOutDate" name="CheckOutDate" required />
+                                            <span asp-validation-for="CheckOutDate" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group mb-3">
+                                            <label asp-for="TotalCost" class="control-label"></label>
+                                            <input asp-for="TotalCost" class="form-control" required />
+                                            <span asp-validation-for="TotalCost" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group mb-3">
+                                            <label asp-for="Status" class="control-label"></label>
+                                            <select asp-for="Status" class="form-control form-select" required>
+                                                <option value="">-- Select Status --</option>
+                                                <option value="Pending">Pending</option>
+                                                <option value="Confirmed">Confirmed</option>
+                                                <option value="Cancelled">Cancelled</option>
+                                                <option value="Completed">Completed</option>
+                                            </select>
+                                            <span asp-validation-for="Status" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        Add field more here
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <div class="form-group">
+                        <button type="submit" form="eventForm" class="btn btn-success">Create</button> |
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+@* <form asp-action="Create">
+    <div class="form-group">
+        <label asp-for="CustomerId" class="control-label"></label>
+        <select asp-for="CustomerId" class="form-control" asp-items="ViewBag.Customers"></select>
+    </div>
+    <div class="form-group">
+        <label asp-for="CheckInDate" class="control-label"></label>
+        <input asp-for="CheckInDate" class="form-control" />
+        <span asp-validation-for="CheckInDate" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="CheckOutDate" class="control-label"></label>
+        <input asp-for="CheckOutDate" class="form-control" />
+        <span asp-validation-for="CheckOutDate" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="RoomId" class="control-label"></label>
+        <select asp-for="RoomId" class="form-control" asp-items="ViewBag.Rooms"></select>
+    </div>
+    <div class="form-group">
+        <label asp-for="NumberOfNights" class="control-label"></label>
+        <input asp-for="NumberOfNights" class="form-control" />
+        <span asp-validation-for="NumberOfNights" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Create" class="btn btn-primary" />
+    </div>
+</form>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    <partial name="_ValidationScriptsPartial"/>
+    <script>
+
+    </script>
+   
+} *@

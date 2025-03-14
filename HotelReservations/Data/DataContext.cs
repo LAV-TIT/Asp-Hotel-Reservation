@@ -12,9 +12,9 @@ namespace HotelReservations.Data
             modelBuilder.Entity<Users>().Property(p => p.Id)
                 .ValueGeneratedOnAdd();
             modelBuilder.Entity<Users>().Property(p => p.Created)
-               .HasDefaultValueSql("GETDATE");
+               .HasDefaultValueSql("GETDATE()");
             modelBuilder.Entity<Users>().Property(p => p.Modified)
-               .HasDefaultValueSql("GETDATE");
+               .HasDefaultValueSql("GETDATE()");
 
             base.OnModelCreating(modelBuilder);
         }
@@ -25,8 +25,9 @@ namespace HotelReservations.Data
         public DbSet<Customer> Customers { get; set; }
 		public DbSet<Rooms> Rooms { get; set; }
 		public DbSet<RoomType> RoomTypes{ get; set; }
-
-		//collection navigation = one to many and many to many
-		// referacte = one to one
-	}
+        public DbSet<Reservation> Reservations { get; set; }
+        public DbSet<ReservationDetails> ReservationDetails { get; set; }
+        public DbSet<Guest> Guests { get; set; }
+        public DbSet<Payment> Payments { get; set; }
+    }
 }

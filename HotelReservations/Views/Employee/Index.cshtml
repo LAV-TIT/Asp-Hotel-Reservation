@@ -4,10 +4,7 @@
     ViewData["Title"] = " List Employees";
 }
 
-<div class="d-flex pb-1" style="justify-content:space-between; align-items:center;" data-aos="fade"
-     data-aos-delay="40"
-     data-aos-duration="400"
-     data-aos-easing="ease-in-out">
+<div class="d-flex pb-1" style="justify-content:space-between; align-items:center;">
     <h4 class="ps-1">
         <i class="fa-solid fa-user-tag"></i> List Employees
     </h4>
@@ -18,10 +15,7 @@
         <li><a href="/room" class="active">@ViewData["Title"]</a></li>
     </ul>
 </div>
-<div class="bg-white rounded-3 p-3 d-flex justify-content-between align-items-center" data-aos="fade"
-     data-aos-delay="50"
-     data-aos-duration="500"
-     data-aos-easing="ease-in-out">
+<div class="bg-white rounded-3 p-3 d-flex justify-content-between align-items-center">
     <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#createModal">
         <i class='bx bxs-user-plus icon fs-5'></i> New Employee
     </button>
@@ -33,15 +27,14 @@
             </div>
         </form>
     </div>
-    <hr />
     <div class="d-flex justify-content-end me-4">
         <form asp-action="Index" method="get" class="form-inline">
-            <input type="hidden" name="search" value="@ViewBag.Search" placeholder="Items per page:.." />
-            <select name="pageSize" id="pageSize" class="form-control" onchange="this.form.submit()">
-                <option value="4" selected="@(ViewBag.PageSize == 4)">4 Items per page</option>
-                <option value="10" selected="@(ViewBag.PageSize == 10)">10 Items per page</option>
-                <option value="20" selected="@(ViewBag.PageSize == 20)">20 Items per page</option>
-                <option value="50" selected="@(ViewBag.PageSize == 50)">50 Items per page</option>
+            <select name="deptId" class="form-control form-select me-2" onchange="this.form.submit()">
+                <option value="">All Department</option>
+                @foreach (var deptId in ViewBag.Departments)
+                {
+                    <option value="@deptId.Value" selected="@(ViewBag.departmentId?.ToString() == deptId.Value)">@deptId.Text</option>
+                }
             </select>
         </form>
     </div>
@@ -71,62 +64,71 @@
     <div class="tab-pane fade show active" id="pills-home" role="tabpanel"
          aria-labelledby="pills-home-tab" tabindex="0">
         <div class="row px-1 p-2">
-            @foreach (var item in Model)
+            @if (Model.Any())
             {
-                <div class="col-md-6 col-lg-4 col-xl-3 p-2">
-                    <div class="card h-100 rounded-3 p-2">
-                        <div class="ms-2 mt-2 rounded-circle overflow-hidden card-img-top" style="width: 90px; height: 90px;">
-                            <a data-bs-toggle="modal" href="#model_@item.EmployeeId" data-bs-whatever role="button">
-                               
-                                <img src="@Html.DisplayFor(modelItem => item.Avatar)" class="img-fluid"
-                                     alt=" @Html.DisplayFor(modelItem => item.Avatar)">
-                            </a>
-                        </div>
-                        <div style="padding: 1rem 5px;" class="card-body position-relative">
-                            <h5>
-                                @Html.DisplayFor(modelItem => item.FirstName)
-                                @Html.DisplayFor(modelItem => item.LastName)
-                            </h5>
-                            <ul class="list-info">
-                                <li> 
-                                    @Html.DisplayFor(modelItem => item.Gender)
-                                </li>
-                                
-                                <li>
-                                    @Html.DisplayFor(modelItem => item.Salary) $
-                                </li>
-                                <li>
-                                    @Html.DisplayFor(modelItem => item.Position)
-                                </li>
-                                <li>
-                                    @Html.DisplayFor(modelItem => item.Department.DepartmentName)
-                                </li>
-                                <li>
-                                    <i class="fa-solid fa-phone-volume"></i> @Html.DisplayFor(modelItem => item.Phone)
-                                </li>
-                                <li>
-                                    <i class="fa-solid fa-envelope"></i> @Html.DisplayFor(modelItem => item.Email)
-                                </li>
-                                <li>
-                                    <i class="fa-solid fa-location-dot"></i> @Html.DisplayFor(modelItem => item.Address)
-                                </li>
-                            </ul>
-                        </div>
-                        <div style="padding: 5px 0;" class="text-end card-body">
-                           <a class="px-2 py-1 text-primary" data-bs-toggle="modal" href="#model_@item.EmployeeId" data-bs-whatever role="button">
-                               <i class="fa-solid fa-user-pen"></i>
-                           </a>
-                            <a class="px-2 py-1 text-success" data-bs-toggle="modal" href="#detmodel_@item.EmployeeId" data-bs-whatever role="button">
-                                <i class="fa-regular fa-eye"></i>
-                            </a>
-                            <a class="px-2 py-1 text-danger" data-bs-toggle="modal" href="#delmodel_@item.EmployeeId" data-bs-whatever role="button">
-                                <i class="fa-solid fa-trash"></i>
-                            </a>
+                @foreach (var item in Model)
+                {
+                    <div class="col-md-6 col-lg-4 col-xl-3 p-2">
+                        <div class="card h-100 rounded-3 p-2">
+                            <div class="ms-2 mt-2 rounded-circle overflow-hidden card-img-top" style="width: 90px; height: 90px;">
+                                <a data-bs-toggle="modal" href="#model_@item.EmployeeId" data-bs-whatever role="button">
 
+                                    <img src="@Html.DisplayFor(modelItem => item.Avatar)" class="img-fluid"
+                                         alt=" @Html.DisplayFor(modelItem => item.Avatar)">
+                                </a>
+                            </div>
+                            <div style="padding: 1rem 5px;" class="card-body position-relative">
+                                <h5>
+                                    @Html.DisplayFor(modelItem => item.FirstName)
+                                    @Html.DisplayFor(modelItem => item.LastName)
+                                </h5>
+                                <ul class="list-info">
+                                    <li>
+                                        @Html.DisplayFor(modelItem => item.Gender)
+                                    </li>
+                                    <li>
+                                        <span>@Html.DisplayFor(modelItem => item.Position)</span>
+                                        <span class="text-end">@Html.DisplayFor(modelItem => item.Salary) $</span>
+                                    </li>
+                                    <li>
+                                        @Html.DisplayFor(modelItem => item.Department.DepartmentName)
+                                    </li>
+                                    <li>
+                                        <i class="fa-solid fa-phone-volume"></i> @Html.DisplayFor(modelItem => item.Phone)
+                                    </li>
+                                    <li>
+                                        <i class="fa-solid fa-envelope"></i> @Html.DisplayFor(modelItem => item.Email)
+                                    </li>
+                                    <li>
+                                        <i class="fa-solid fa-location-dot"></i> @Html.DisplayFor(modelItem => item.Address)
+                                    </li>
+                                </ul>
+                            </div>
+                            <div style="padding: 5px 0;" class="text-end card-body">
+                                <a class="px-2 py-1 text-primary" data-bs-toggle="modal" href="#model_@item.EmployeeId" data-bs-whatever role="button">
+                                    <i class="fa-solid fa-user-pen"></i>
+                                </a>
+                                <a class="px-2 py-1 text-success" data-bs-toggle="modal" href="#detmodel_@item.EmployeeId" data-bs-whatever role="button">
+                                    <i class="fa-regular fa-eye"></i>
+                                </a>
+                                <a class="px-2 py-1 text-danger" data-bs-toggle="modal" href="#delmodel_@item.EmployeeId" data-bs-whatever role="button">
+                                    <i class="fa-solid fa-trash"></i>
+                                </a>
+
+                            </div>
                         </div>
+                    </div>
+                }
+            }
+            else
+            {
+                <div class="col-md-12 text-center">
+                    <div class="alert alert-warning" role="alert" style="background: #ff000026;color: red;border: 1px solid red;">
+                        <i class="fa-solid fa-triangle-exclamation"></i> Not found
                     </div>
                 </div>
             }
+            
         </div>
 
     </div>
@@ -175,83 +177,93 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (var item in Model)
-                    {
-                        <tr>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.EmployeeId)
-                            </td>
-                            <td>
-                                <a style="display: inline-table" data-bs-toggle="modal" href="#detmodel_@item.EmployeeId"
+                    @if(Model.Any()){
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.EmployeeId)
+                                </td>
+                                <td>
+                                    <a style="display: inline-table" data-bs-toggle="modal" href="#model_@item.EmployeeId"
                                        data-bs-whatever role="button">
-                                    <img style="width: 50px;height: 50px;border-radius: 50px;object-fit: cover;"
-                                         src="@Html.DisplayFor(modelItem => item.Avatar)" class="img-fluid me-2"
-                                         alt="@Html.DisplayFor(modelItem => item.Avatar)">
-                                </a>
-                                @Html.DisplayFor(modelItem => item.FirstName)
-                                @Html.DisplayFor(modelItem => item.LastName)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Gender)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Department.DepartmentName)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Salary) $
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Phone)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Email)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.HireDate)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Address)
-                            </td>
+                                        <img style="width: 50px;height: 50px;border-radius: 50px;object-fit: cover;"
+                                             src="@Html.DisplayFor(modelItem => item.Avatar)" class="img-fluid me-2"
+                                             alt="@Html.DisplayFor(modelItem => item.Avatar)">
+                                    </a>
+                                    @Html.DisplayFor(modelItem => item.FirstName)
+                                    @Html.DisplayFor(modelItem => item.LastName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Gender)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Department.DepartmentName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Salary) $
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Phone)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Email)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.HireDate)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Address)
+                                </td>
 
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Description)
-                            </td>
-                            <td>
-                                <div class="form-check form-switch">
-                                    <label class="form-check-label" for="@item.EmployeeId"></label>
-                                    <input class="form-check-input" type="checkbox" role="switch" id="@item.EmployeeId" disabled
-                                    @(item.IsActive.HasValue && item.IsActive.Value ? "checked" : "")>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Description)
+                                </td>
+                                <td>
+                                    <div class="form-check form-switch">
+                                        <label class="form-check-label" for="@item.EmployeeId"></label>
+                                        <input class="form-check-input" type="checkbox" role="switch" id="@item.EmployeeId" disabled
+                                        @(item.IsActive.HasValue && item.IsActive.Value ? "checked" : "")>
+                                    </div>
+                                </td>
+
+                                <td>
+                                    <button type="button" class="btn text-info border-0" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <i class="fa-solid fa-ellipsis-vertical"></i>
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <li>
+                                            <a class="px-3 py-1 d-flex justify-content-between align-items-center" data-bs-toggle="modal"
+                                               href="#model_@item.EmployeeId"
+                                               data-bs-whatever role="button">
+                                                Edit <i class="fa-regular fa-pen-to-square"></i>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a class="px-3 py-1 d-flex justify-content-between align-items-center text-success" data-bs-toggle="modal"
+                                               href="#detmodel_@item.EmployeeId"
+                                               data-bs-whatever role="button">
+                                                Details <i class="fa-regular fa-eye"></i>
+                                            </a>
+                                        </li>
+                                        <li><hr class="dropdown-divider"></li>
+                                        <li>
+                                            <a class="px-3 py-1 d-flex justify-content-between align-items-center text-danger" data-bs-toggle="modal"
+                                               href="#delmodel_@item.EmployeeId"
+                                               data-bs-whatever role="button">
+                                                Delete <i class="fa-solid fa-trash"></i>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        }
+                    }else{
+                        <tr>
+                            <td colspan="12" class="text-center">
+                                <div class="alert alert-warning" role="alert" style="background: #ff000026;color: red;border: 1px solid red;">
+                                    <i class="fa-solid fa-triangle-exclamation"></i> Not found
                                 </div>
-                            </td>
-                            
-                            <td>
-                                <button type="button" class="btn text-info border-0" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <i class="fa-solid fa-ellipsis-vertical"></i>
-                                </button>
-                                <ul class="dropdown-menu">
-                                    <li>
-                                        <a class="px-3 py-1 d-flex justify-content-between align-items-center" data-bs-toggle="modal"
-                                           href="#model_@item.EmployeeId"
-                                           data-bs-whatever role="button">
-                                            Edit <i class="fa-regular fa-pen-to-square"></i>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a class="px-3 py-1 d-flex justify-content-between align-items-center text-success" data-bs-toggle="modal"
-                                           href="#detmodel_@item.EmployeeId"
-                                           data-bs-whatever role="button">
-                                            Details <i class="fa-regular fa-eye"></i>
-                                        </a>
-                                    </li>
-                                    <li><hr class="dropdown-divider"></li>
-                                    <li>
-                                        <a class="px-3 py-1 d-flex justify-content-between align-items-center text-danger" data-bs-toggle="modal"
-                                           href="#delmodel_@item.EmployeeId"
-                                           data-bs-whatever role="button">
-                                            Delete <i class="fa-solid fa-trash"></i>
-                                        </a>
-                                    </li>
-                                </ul>
                             </td>
                         </tr>
                     }
@@ -266,44 +278,58 @@
 
             Showing @((Model.PageIndex - 1) * Model.PageSize + 1) to @(Math.Min(Model.PageIndex * Model.PageSize, Model.TotalItems)) of @Model.TotalItems items
         </p>
-        <ul class="pagination justify-content-end mb-0">
-            @if (Model.HasPreviousPage)
-            {
-                <li class="page-item">
-                    <a class="page-link" href="@Url.Action("Index", new { search = ViewBag.Search, pageIndex = Model.PageIndex - 1, pageSize = ViewBag.PageSize })"><i class='bx bxs-chevrons-left'></i></a>
-                </li>
-            }
-            else
-            {
-                <li class="page-item disabled">
-                    <span class="page-link"><i class='bx bxs-chevrons-left'></i></span>
-                </li>
-            }
+        <div class=" py-3 d-flex align-items-center">
+            <div class="form-group me-4">
+                <form asp-action="Index" method="get" class="form-inline">
+                    <input type="hidden" name="search" value="@ViewBag.Search" placeholder="Items per page:.." />
+                    <select name="pageSize" id="pageSize" class="form-control form-select" onchange="this.form.submit()">
+                        <option value="4" selected="@(ViewBag.PageSize == 4)">4 Items per page</option>
+                        <option value="10" selected="@(ViewBag.PageSize == 10)">10 Items per page</option>
+                        <option value="20" selected="@(ViewBag.PageSize == 20)">20 Items per page</option>
+                        <option value="50" selected="@(ViewBag.PageSize == 50)">50 Items per page</option>
+                    </select>
+                </form>
+            </div>
+            <ul class="pagination justify-content-end mb-0">
+                @if (Model.HasPreviousPage)
+                {
+                    <li class="page-item">
+                        <a class="page-link" href="@Url.Action("Index", new { search = ViewBag.Search, pageIndex = Model.PageIndex - 1, pageSize = ViewBag.PageSize })"><i class='bx bxs-chevrons-left'></i></a>
+                    </li>
+                }
+                else
+                {
+                    <li class="page-item disabled">
+                        <span class="page-link"><i class='bx bxs-chevrons-left'></i></span>
+                    </li>
+                }
 
-            @for (int i = 1; i <= Model.TotalPages; i++)
-            {
-                <li class="page-item @(i == Model.PageIndex ? "active" : "")">
-                    <a class="page-link" href="@Url.Action("Index", new { search = ViewBag.Search, pageIndex = i, pageSize = ViewBag.PageSize })">@i</a>
-                </li>
-            }
+                @for (int i = 1; i <= Model.TotalPages; i++)
+                {
+                    <li class="page-item @(i == Model.PageIndex ? "active" : "")">
+                        <a class="page-link" href="@Url.Action("Index", new { search = ViewBag.Search, pageIndex = i, pageSize = ViewBag.PageSize })">@i</a>
+                    </li>
+                }
 
-            @if (Model.HasNextPage)
-            {
-                <li class="page-item">
-                    <a class="page-link" href="@Url.Action("Index",
+                @if (Model.HasNextPage)
+                {
+                    <li class="page-item">
+                        <a class="page-link" href="@Url.Action("Index",
                     new { search = ViewBag.Search, pageIndex = Model.PageIndex + 1, pageSize = ViewBag.PageSize })">
-                        <i class='bx bxs-chevrons-right'></i>
-                    </a>
-                </li>
-            }
-            else
-            {
-                <li class="page-item disabled">
-                    <span class="page-link"><i class='bx bxs-chevrons-right'></i></span>
-                </li>
-            }
-        </ul>
+                            <i class='bx bxs-chevrons-right'></i>
+                        </a>
+                    </li>
+                }
+                else
+                {
+                    <li class="page-item disabled">
+                        <span class="page-link"><i class='bx bxs-chevrons-right'></i></span>
+                    </li>
+                }
+            </ul>
+        </div>
     </div>
+        
 </div>
 <!-- Modal for Create -->
 <partial name="_Create" model="new Employee()" />
@@ -315,3 +341,4 @@
     <partial name="_Delete" model="item" />
     
 }
+

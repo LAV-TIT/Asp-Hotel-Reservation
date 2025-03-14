@@ -26,15 +26,12 @@ namespace HotelReservations.Controllers
 			ViewBag.ActiveEmployeePercentage = activeEmployeePercentage;
 
 			// Rooms
-
 			int roomCount = _context.Rooms.Count();
-			int activeRooms = _context.Rooms.Count(e => (bool)e.Status);
-			double roomCountPercentage = roomCount > 0 ? (double) activeRooms / totalEmployees * 100 : 0;
+			//int activeRooms = _context.Rooms.Count(e => (bool)e.Status);
+			double roomCountPercentage = roomCount > 0 ? (double)   totalEmployees/ totalEmployees * 100 : 0;
 			ViewBag.TotalRooms = roomCount;
 			ViewBag.RoomCount = roomCountPercentage;
-			ViewBag.TotalRooms = roomCount;
-			ViewBag.TotalRoomsActive = activeRooms;
-
+			ViewBag.TotalRoomsActive = "";
 
 			// Customer
 			int custsCount = _context.Customers.Count();
@@ -44,11 +41,7 @@ namespace HotelReservations.Controllers
 			ViewBag.CustsCountPercentage = custsCountPercentage;
 			ViewBag.CustsActiveTotal = custsSctive;
 
-
-
 			return View();
-
-			
 		}
         public IActionResult Dashboard()
         {

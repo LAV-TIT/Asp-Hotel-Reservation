@@ -21,7 +21,7 @@ namespace HotelReservations.Controllers
         {
             // Fetch all rooms ordered by RoomId
             var roomsTypesQuery = _context.RoomTypes
-                .OrderByDescending(e => e.RoomTypeId).AsTracking();
+                .OrderByDescending(e => e.RoomTypeId).AsNoTracking();
 
             if (!string.IsNullOrEmpty(search))
             {

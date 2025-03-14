@@ -13,6 +13,7 @@
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <link href="~/boxicons/css/boxicons.min.css" rel="stylesheet" />
     <link href="~/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.min.css" rel="stylesheet">
     <link href="~/aos/aos.css" rel="stylesheet" />
 	<link rel="stylesheet" href="~/css/main.css">
 
@@ -36,7 +37,33 @@
 			padding: 10px;
 			border-collapse: collapse;
 		}
-    </style>
+
+        .custom-event {
+            background-color: #3788d8;
+            border-color: #3788d8;
+            color: #fff;
+        }
+
+        #external-events {
+            padding: 10px;
+            background: #f9f9f9;
+            border: 1px solid #ddd;
+            margin-bottom: 20px;
+        }
+
+            #external-events .fc-event {
+                margin: 5px 0;
+                cursor: move;
+            }
+
+        .fc .fc-daygrid-day.fc-day-today {
+            background-color: #8080f1;
+        }
+
+        .fc .fc-daygrid-day.fc-day-today a{
+            color: #fff;
+        }
+      </style>
 </head>
 
 <body>
@@ -49,9 +76,7 @@
 		<partial name="_Navbar" />
 		<!-- NAVBAR -->
 		<!-- MAIN -->
-       
 		<section style="padding: 15px;">
-
 			@RenderBody()
 		</section>
 		<!-- MAIN -->
@@ -63,6 +88,7 @@
     <script src="~/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
     <script src="~/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.min.js"></script>
     <script src="~/aos/aos.js"></script>
 	<script src="~/js/main.js"></script>
     @RenderSection("Scripts", required: false)
@@ -140,10 +166,6 @@
 
 		});
 	</script>
+    <script src="~/js/fullcalendar.js"></script>
 </body>
 </html>
-
-
-
-
-

@@ -171,7 +171,16 @@ namespace HotelReservations.Controllers
 		{
 			var custs = _context.Customers.Find(id);
 			if (custs is null) return NotFound();
-			_context.Customers.Remove(custs);
+            // Delete the associated image file
+            if (!string.IsNullOrEmpty(custs.Avatar))
+            {
+                var filePath = Path.Combine("wwwroot", custs.Avatar);
+                if (System.IO.File.Exists(filePath))
+                {
+                    System.IO.File.Delete(filePath);
+                }
+            }
+            _context.Customers.Remove(custs);
 			int insertedRows = _context.SaveChanges();
 			return insertedRows > 0 ? RedirectToAction(nameof(Index)) : View();
 		}

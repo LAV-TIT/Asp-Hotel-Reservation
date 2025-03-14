@@ -19,9 +19,10 @@
     </ul>
 </div>
 <div class="bg-white rounded-3 p-3 d-flex justify-content-between align-items-center" >
-    <a class="btn btn-success" asp-action="Create">
+
+    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#createModal">
         <i class="fa-solid fa-user-plus"></i> Create New
-    </a>
+    </button>
     <div class="search-container">
         <form asp-action="Index" method="get">
             <div class="form-group me-4">
@@ -67,53 +68,70 @@
     <div class="tab-pane fade show active" id="pills-home" role="tabpanel"
          aria-labelledby="pills-home-tab" tabindex="0">
         <div class="row px-1 p-2">
-            @foreach (var item in Model)
+            @if (Model.Any())
             {
-                <div class="col-md-6 col-lg-4 col-xl-3 p-2">
-                    <div class="card h-100 rounded-3 p-2">
-                        <div class="ms-2 mt-2 rounded-circle overflow-hidden card-img-top" style="width: 80px; height: 80px;">
-                            <a asp-action="details"
-                               asp-route-id="@item.CustomerId">
-                                @if(item.Avatar is null){
-                                    <img src="/images/cute.jpg" class="img-fluid"
-                                    alt=" @Html.DisplayFor(modelItem => item.Avatar)">
-                                }
-                                else{
+                @foreach (var item in Model)
+                {
+                    <div class="col-md-6 col-lg-4 col-xl-3 p-2">
+                        <div class="card h-100 rounded-3 p-2">
+                            <div class="ms-2 mt-2 rounded-circle overflow-hidden card-img-top" style="width: 80px; height: 80px;">
+                                <a data-bs-toggle="modal" href="#model_@item.CustomerId" data-bs-whatever role="button">
+                                    @if (item.Avatar is null)
+                                    {
+                                        <img src="/images/cute.jpg" class="img-fluid"
+                                             alt=" @Html.DisplayFor(modelItem => item.Avatar)">
+                                    }
+                                    else
+                                    {
 
-                                    <img src="@Html.DisplayFor(modelItem => item.Avatar)" class="img-fluid"
-                                     alt=" @Html.DisplayFor(modelItem => item.Avatar)">
-                                 }
-                            </a>
-                        </div>
-                        <div style="padding: 1rem 5px;" class="card-body position-relative">
-                            <h5>
-                                @Html.DisplayFor(modelItem => item.FirstName)
-                                @Html.DisplayFor(modelItem => item.LastName)
-                            </h5>
-                            <ul class="list-info">
-                                <li>
-                                    @Html.DisplayFor(modelItem => item.Gender)
-                                </li>
-                                <li>
-                                    <i class="fa-solid fa-phone-volume"></i> @Html.DisplayFor(modelItem => item.Phone)
-                                </li>
-                                <li>
-                                    <i class="fa-solid fa-envelope"></i> @Html.DisplayFor(modelItem => item.Email)
-                                </li>
-                                <li>
-                                    <i class="fa-solid fa-location-dot"></i> @Html.DisplayFor(modelItem => item.Address)
-                                </li>
-                            </ul>
-                        </div>
-                        <div style="padding: 5px 0;" class="text-end card-body">
-                            <a class="px-2 py-1 text-primary"
-                               asp-action="edit" asp-route-id="@item.CustomerId"><i class="fa-solid fa-user-pen"></i></a>
+                                        <img src="@Html.DisplayFor(modelItem => item.Avatar)" class="img-fluid"
+                                             alt=" @Html.DisplayFor(modelItem => item.Avatar)">
+                                    }
+                                </a>
+                            </div>
+                            <div style="padding: 1rem 5px;" class="card-body position-relative">
+                                <h5>
+                                    @Html.DisplayFor(modelItem => item.FirstName)
+                                    @Html.DisplayFor(modelItem => item.LastName)
+                                </h5>
+                                <ul class="list-info">
+                                    <li>
+                                        @Html.DisplayFor(modelItem => item.Gender)
+                                    </li>
+                                    <li>
+                                        <i class="fa-solid fa-phone-volume"></i> @Html.DisplayFor(modelItem => item.Phone)
+                                    </li>
+                                    <li>
+                                        <i class="fa-solid fa-envelope"></i> @Html.DisplayFor(modelItem => item.Email)
+                                    </li>
+                                    <li>
+                                        <i class="fa-solid fa-location-dot"></i> @Html.DisplayFor(modelItem => item.Address)
+                                    </li>
+                                </ul>
+                            </div>
+                            <div style="padding: 5px 0;" class="text-end card-footer">
+                                <a class="px-2" data-bs-toggle="modal" href="#model_@item.CustomerId" data-bs-whatever role="button">
+                                    <i class="fa-regular fa-pen-to-square"></i>
+                                </a>
+                                <a class="px-2 text-success" data-bs-toggle="modal" href="#detmodel_@item.CustomerId" data-bs-whatever role="button">
+                                    <i class="fa-regular fa-eye"></i>
+                                </a>
 
-                            <a class="px-2 py-1 text-success"
-                               asp-action="Details" asp-route-id="@item.CustomerId"><i class="fa-regular fa-eye"></i></a>
-                            <a class="card-link px-2 text-danger"
-                               asp-action="Delete" asp-route-id="@item.CustomerId"><i class="fa-solid fa-trash"></i></a>
+                                <a class="px-2 text-danger" data-bs-toggle="modal"
+                                   href="#delmodel_@item.CustomerId"
+                                   data-bs-whatever role="button">
+                                    <i class="fa-solid fa-trash"></i>
+                                </a>
+                            </div>
                         </div>
+                    </div>
+                }
+            }
+            else
+            {
+                <div class="col-md-12 text-center">
+                    <div class="alert alert-warning" role="alert" style="background: #ff000026;color: red;border: 1px solid red;">
+                        <i class="fa-solid fa-triangle-exclamation"></i> Not found
                     </div>
                 </div>
             }
@@ -131,9 +149,6 @@
                     <tr>
                         <th>
                             Id
-                        </th>
-                        <th>
-                            IdCard
                         </th>
                         <th> 
                             Name
@@ -154,47 +169,79 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (var item in Model)
+                    @if (Model.Any())
+                    {
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.CustomerId)
+                                </td>
+                                <td>
+                                    <a style="display: inline-table" data-bs-toggle="modal" href="#detmodel_@item.CustomerId"
+                                       data-bs-whatever role="button">
+                                        <img style="width: 50px;height: 50px;border-radius: 50px;object-fit: cover;"
+                                             src="@Html.DisplayFor(modelItem => item.Avatar)" class="img-fluid me-2"
+                                             alt="@Html.DisplayFor(modelItem => item.Avatar)">
+                                    </a>
+                                    @Html.DisplayFor(modelItem => item.FirstName)
+                                    @Html.DisplayFor(modelItem => item.LastName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Gender)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Phone)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Address)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Description)
+                                </td>
+                                <td>
+                                    <button type="button" class="btn cus_btn text-info border-0" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <i class="fa-solid fa-ellipsis-vertical"></i>
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <li>
+                                            <a class="px-3 py-1 d-flex justify-content-between align-items-center" data-bs-toggle="modal"
+                                               href="#model_@item.CustomerId"
+                                               data-bs-whatever role="button">
+                                                Edit <i class="fa-regular fa-pen-to-square"></i>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a class="px-3 py-1 d-flex justify-content-between align-items-center text-success" data-bs-toggle="modal"
+                                               href="#detmodel_@item.CustomerId"
+                                               data-bs-whatever role="button">
+                                                Details <i class="fa-regular fa-eye"></i>
+                                            </a>
+                                        </li>
+                                        <li><hr class="dropdown-divider"></li>
+                                        <li>
+                                            <a class="px-3 py-1 d-flex justify-content-between align-items-center text-danger" data-bs-toggle="modal"
+                                               href="#delmodel_@item.CustomerId"
+                                               data-bs-whatever role="button">
+                                                Delete <i class="fa-solid fa-trash"></i>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        }
+                    }
+                    else
                     {
                         <tr>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.CustomerId)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.FirstName)
-                                @Html.DisplayFor(modelItem => item.LastName)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Gender)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Phone)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Address)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Description)
-                            </td>
-                            <td>
-                                <button type="button" class="btn cus_btn text-info border-0" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <i class="fa-solid fa-ellipsis-vertical"></i>
-                                </button>
-                                <ul class="dropdown-menu">
-                                    <li>
-                                        <a class="px-3 py-1 d-flex justify-content-between align-items-center" asp-action="Edit" asp-route-id="@item.CustomerId">Edit <i class="fa-regular fa-pen-to-square"></i></a>
-                                    </li>
-                                    <li>
-                                        <a class="px-3 py-1 d-flex justify-content-between align-items-center text-success" asp-action="Details" asp-route-id="@item.CustomerId">Details <i class="fa-regular fa-eye"></i></a>
-                                    </li>
-                                    <li><hr class="dropdown-divider"></li>
-                                    <li>
-                                        <a class="px-3 py-1 d-flex justify-content-between align-items-center text-danger" asp-action="Delete" asp-route-id="@item.CustomerId">Delete <i class="fa-solid fa-trash"></i></a>
-                                    </li>
-                                </ul>
+                            <td colspan="12" class="text-center">
+                                <div class="alert alert-warning" role="alert" style="background: #ff000026;color: red;border: 1px solid red;">
+                                    <i class="fa-solid fa-triangle-exclamation"></i> Not found
+                                </div>
                             </td>
                         </tr>
                     }
+                    
                 </tbody>
             </table>
         </div>
@@ -245,3 +292,14 @@
         </ul>
     </div>
 </div>
+
+<!-- Modal for Create -->
+<partial name="_Create" model="new Customer()" />
+<!-- Modal for Edit -->
+@foreach (var item in Model)
+{
+    <partial name="_Edit" model="item" />
+    <partial name="_Details" model="item" />
+    <partial name="_Delete" model="item" />
+
+}

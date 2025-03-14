@@ -29,6 +29,11 @@ namespace HotelReservations.Models
             var items = await source.Skip((pageIndex - 1) * pageSize).Take(pageSize).ToListAsync();
             return new PaginatedList<T>(items, count, pageIndex, pageSize);
         }
+
+        //internal static async Task<string?> CreateAsync(IQueryable<ReservationDetails> reserQuery, int pageIndex, int pageSize)
+        //{
+        //    throw new NotImplementedException();
+        //}
     }
 }
 

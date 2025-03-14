@@ -9,7 +9,7 @@
         <div class="modal-dialog modal-lg modal-dialog-scrollable">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="@Model.EmployeeId">Edit New Department</h5>
+                    <h5 class="modal-title" id="@Model.EmployeeId">@ViewData["Title"]</h5>
                     <button type="button" class="ms-auto btn-modal-close" data-bs-dismiss="modal" aria-label="Close"><i class='bx bx-plus'></i></button>
                 </div>
                 <div class="modal-body">
@@ -18,21 +18,21 @@
                             <div class="col-lg-7">
                                 <div class="row">
                                     <div class="col-md-6">
-                                        <div class="form-group mb-4">
+                                        <div class="form-group mb-3">
                                             <label asp-for="FirstName" class="control-label"></label>
                                             <input asp-for="FirstName" class="form-control" />
                                             <span asp-validation-for="FirstName" class="text-danger"></span>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
-                                        <div class="form-group mb-4">
+                                        <div class="form-group mb-3">
                                             <label asp-for="LastName" class="control-label"></label>
                                             <input asp-for="LastName" class="form-control" />
                                             <span asp-validation-for="LastName" class="text-danger"></span>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
-                                        <div class="form-group mb-4">
+                                        <div class="form-group mb-3">
                                             <label asp-for="Gender" class="control-label"></label>
                                             <select asp-for="Gender" class="form-control form-select">
                                                 <option value="">-- Select Gender --</option>
@@ -45,7 +45,7 @@
 
                                     <div class="col-md-6">
                                         <label asp-for="Department" class="control-label"></label>
-                                        <div class="input-group">
+                                        <div class="input-group mb-3">
                                             <select asp-for="DepartmentId" class="form-control form-select" asp-items="ViewBag.departments">
                                                 <option value="">-- Select Department--</option>
                                             </select>
@@ -56,42 +56,42 @@
                                         <span asp-validation-for="DepartmentId" class="text-danger mb-3 d-block "></span>
                                     </div>
                                     <div class="col-md-6">
-                                        <div class="form-group mb-4">
+                                        <div class="form-group mb-3">
                                             <label asp-for="Position" class="control-label"></label>
                                             <input asp-for="Position" class="form-control" />
                                             <span asp-validation-for="Position" class="text-danger"></span>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
-                                        <div class="form-group mb-4">
+                                        <div class="form-group mb-3">
                                             <label asp-for="Salary" class="control-label"></label>
                                             <input asp-for="Salary" class="form-control" />
                                             <span asp-validation-for="Salary" class="text-danger"></span>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
-                                        <div class="form-group mb-4">
+                                        <div class="form-group mb-3">
                                             <label asp-for="HireDate" class="control-label"></label>
                                             <input type="date" asp-for="HireDate" class="form-control" />
                                             <span asp-validation-for="HireDate" class="text-danger"></span>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
-                                        <div class="form-group mb-4">
+                                        <div class="form-group mb-3">
                                             <label asp-for="Phone" class="control-label"></label>
                                             <input asp-for="Phone" class="form-control" />
                                             <span asp-validation-for="Phone" class="text-danger"></span>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
-                                        <div class="form-group mb-4">
+                                        <div class="form-group mb-3">
                                             <label asp-for="Email" class="control-label"></label>
                                             <input asp-for="Email" class="form-control" />
                                             <span asp-validation-for="Email" class="text-danger"></span>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
-                                        <div class="form-group mb-4">
+                                        <div class="form-group mb-3">
                                             <label asp-for="Address" class="control-label"></label>
                                             <textarea asp-for="Address" class="form-control" rows="1"></textarea>
                                             <span asp-validation-for="Address" class="text-danger"></span>
@@ -99,7 +99,7 @@
                                     </div>
 
                                     <div class="col-6">
-                                        <div class="form-group mb-4">
+                                        <div class="form-group mb-3">
                                             <label asp-for="Description" class="control-label"></label>
                                             <textarea asp-for="Description" class="form-control" rows="1"></textarea>
                                             <span asp-validation-for="Description" class="text-danger"></span>
@@ -122,17 +122,18 @@
                                 <div class="col-12">
                                     <div class="mb-2">
                                         <label asp-for="Avatar" class="control-label"></label>
-                                        <input type="file" asp-for="Avatar" name="photo" id="photo" onchange="Photo(this)" class="form-control" value="~/@Model.Avatar" />
+                                        <input type="file" asp-for="Avatar" name="photo" id="photo" onchange="PrePhoto(this)"
+                                               data-preview="imagePreview_@Model.EmployeeId" class="form-control" value="~/@Model.Avatar" />
                                         <span asp-validation-for="Avatar" class="text-danger"></span>
                                     </div>
                                 </div>
                                 @if (Model.Avatar is null)
                                 {
-                                    <img src="~/images/uploads.svg" id="imagePreview" alt="Room Type Image" class="rounded-3 img-fluid" />
+                                    <img src="~/images/uploads.svg" id="imagePreview_@Model.EmployeeId" alt="@Model.FirstName @Model.LastName" class="rounded-3 img-fluid" />
                                 }
                                 else
                                 {
-                                    <img src="~/@Model.Avatar" id="imagePreview" alt="Room Type Image" class="rounded-3 img-fluid" />
+                                    <img src="~/@Model.Avatar" id="imagePreview_@Model.EmployeeId" alt="@Model.FirstName @Model.LastName" class="rounded-3 img-fluid" />
                                 }
                             </div>
                         </div>

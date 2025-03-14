@@ -18,23 +18,25 @@
     <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#createModal">
         <i class="fa-solid fa-plus"></i> Create New
     </button>
-    <div class="search-container">
-        <form asp-action="Index" method="get">
-            <div class="form-group me-4">
-                <input type="text" name="search" class="form-control" placeholder="Search by room name..." value="@ViewBag.Search" />
+    <div class="search-container" style="max-width: 100%;">
+        <form asp-action="Index" method="get" class="d-flex align-items-center">
+            <div class="form-group me-2 w-100">
+                <input type="text" name="search" class="form-control" placeholder="Search by room name..." value="@ViewBag.Search"/>
                 <button type="submit" class=""> <i class="bx bx-search icon"></i></button>
             </div>
-        </form>
-    </div>
-    <hr />
-    <div class="d-flex justify-content-end me-4">
-        <form asp-action="Index" method="get" class="form-inline">
-            <input type="hidden" name="search" value="@ViewBag.Search" placeholder="Items per page:.." />
-            <select name="pageSize" id="pageSize" class="form-control" onchange="this.form.submit()">
-                <option value="4" selected="@(ViewBag.PageSize == 4)">4 Items per page</option>
-                <option value="10" selected="@(ViewBag.PageSize == 10)">10 Items per page</option>
-                <option value="20" selected="@(ViewBag.PageSize == 20)">20 Items per page</option>
-                <option value="50" selected="@(ViewBag.PageSize == 50)">50 Items per page</option>
+            <select name="status" class="form-control me-2" onchange="this.form.submit()">
+                <option value="">All Room Statuse</option>
+                <option value="Available" selected="@(ViewBag.Status == "Available")">Available</option>
+                <option value="Booked" selected="@(ViewBag.Status == "Booked")">Booked</option>
+                <option value="Occupied" selected="@(ViewBag.Status == "Occupied")">Occupied</option>
+                <option value="Out of Service" selected="@(ViewBag.Status == "Out of Service")">Out of Service</option>
+            </select>
+            <select name="roomTypeId" class="form-control me-2" onchange="this.form.submit()">
+                <option value="">All Room Types</option>
+                @foreach (var roomType in ViewBag.roomTypes)
+                {
+                    <option value="@roomType.Value" selected="@(ViewBag.RoomTypeId?.ToString() == roomType.Value)">@roomType.Text</option>
+                }
             </select>
         </form>
     </div>
@@ -64,48 +66,66 @@
     <div class="tab-pane fade show active" id="pills-home" role="tabpanel"
          aria-labelledby="pills-home-tab" tabindex="0">
         <div class="row px-1 p-2">
-            @foreach (var item in Model)
+            @if (Model.Any())
             {
-                <div class="col-md-6 col-lg-4 col-xl-3 p-2">
-                    <div class="card h-100 rounded-3 p-2">
-                        <div class="rounded-1 overflow-hidden card-img-top">
-                            <a data-bs-toggle="modal" href="#model_@item.RoomId" data-bs-whatever role="button">
-                            <img src="@Html.DisplayFor(modelItem => item.RoomImage)" class="img-fluid"
-                                 alt=" @Html.DisplayFor(modelItem => item.RoomName)">
-                            </a>
-                        </div>
-                        <div style="padding: 1rem 5px;" class="card-body position-relative">
-                            <span class="price">
-                                <strong>Price Per Night:</strong>
-                                <span class="fw-bold" style="color: #f4511e; font-size: 15px;font-family: serif;">
-                                    @Html.DisplayFor(modelItem => item.PricePerNight) $
+                @foreach (var item in Model)
+                {
+                    <div class="col-md-6 col-lg-4 col-xl-3 p-2">
+                        <div class="card h-100 rounded-3 p-2">
+                            <div class="rounded-1 overflow-hidden card-img-top">
+                                <a data-bs-toggle="modal" href="#model_@item.RoomId" data-bs-whatever role="button">
+                                    <img src="@Html.DisplayFor(modelItem => item.RoomImage)" class="img-fluid"
+                                         alt=" @Html.DisplayFor(modelItem => item.RoomName)">
+                                </a>
+                            </div>
+                            <div style="padding: 1rem 5px;" class="card-body position-relative">
+                                <span class="price">
+                                    <strong>Price Per Night:</strong>
+                                    <span class="fw-bold" style="color: #f4511e; font-size: 15px;font-family: serif;">
+                                        @Html.DisplayFor(modelItem => item.PricePerNight) $
+                                    </span>
                                 </span>
-                            </span>
-                            <h5 class="card-title">
-                                @Html.DisplayFor(modelItem => item.RoomName)
-                            </h5>
-                            <p class="card-text">
-                                <strong>Type:</strong>
-                                @Html.DisplayFor(modelItem => item.RoomType.RoomTypeName)<br />
-                                <strong>@Html.DisplayNameFor(modelItem => item.Amenities):</strong>
-                                @Html.DisplayFor(modelItem => item.Amenities) <br />
-                                @Html.DisplayFor(modelItem => item.Description)
-                            </p>
+                                <h5 class="card-title">
+                                    @Html.DisplayFor(modelItem => item.RoomName)
+                                </h5>
+                                <p class="card-text">
+                                    <strong>Type:</strong>
+                                    @Html.DisplayFor(modelItem => item.RoomType.RoomTypeName)<br />
+                                    <strong>@Html.DisplayNameFor(modelItem => item.Amenities):</strong>
+                                    @Html.DisplayFor(modelItem => item.Amenities) <br />
+                                    @Html.DisplayFor(modelItem => item.Description)
+                                </p>
+
+                            </div>
+                            <div style="padding: 5px 0;" class="text-end d-flex justify-content-between align-items-center card-body">
+                                <span data-status="@item.Status">
+                                    @item.Status
+                                </span>
+                                <div>
+                                    <a class="px-2 py-1 text-primary" data-bs-toggle="modal" href="#model_@item.RoomId" data-bs-whatever role="button">
+                                        <i class="fa-regular fa-pen-to-square"></i>
+                                    </a>
+                                    <a class="px-2 py-1 text-success" data-bs-toggle="modal" href="#detmodel_@item.RoomId" data-bs-whatever role="button">
+                                        <i class="fa-regular fa-eye"></i>
+                                    </a>
+                                    <a class="px-2 py-1 text-danger" data-bs-toggle="modal" href="#delmodel_@item.RoomId" data-bs-whatever role="button">
+                                        <i class="fa-solid fa-trash"></i>
+                                    </a>
+                                </div>
+                            </div>
                         </div>
-                        <div style="padding: 5px 0;" class="text-end card-body">
-                            <a class="px-2 py-1 text-primary" data-bs-toggle="modal" href="#model_@item.RoomId" data-bs-whatever role="button">
-                                <i class="fa-regular fa-pen-to-square"></i>
-                            </a>
-                            <a class="px-2 py-1 text-success" data-bs-toggle="modal" href="#detmodel_@item.RoomId" data-bs-whatever role="button">
-                                <i class="fa-regular fa-eye"></i>
-                            </a>
-                            <a class="px-2 py-1 text-danger" data-bs-toggle="modal" href="#delmodel_@item.RoomId" data-bs-whatever role="button">
-                                <i class="fa-solid fa-trash"></i>
-                            </a>
-                        </div>
+                    </div>
+                }
+            }
+            else
+            {
+                <div class="col-md-12">
+                    <div class="alert alert-warning" role="alert" style="background: #ff000026;color: red;border: 1px solid red;">
+                        <i class="fa-solid fa-triangle-exclamation"></i> Not found
                     </div>
                 </div>
             }
+            
         </div>
        
     </div>
@@ -150,6 +170,8 @@
                     </tr>
                 </thead>
                 <tbody>
+                @if (Model.Any())
+                {
                     @foreach (var item in Model)
                     {
                         <tr>
@@ -187,8 +209,9 @@
                             </td>
                             
                             <td class="text-center">
-                                <input class="form-check-input" type="checkbox"
-                                       disabled @(item.Status.HasValue && item.Status.Value ? "checked" : "") />
+                                <span data-status="@item.Status">
+                                    @item.Status
+                                </span>
                             </td>
                             <td>
                                 <button type="button" class="btn text-info border-0" data-bs-toggle="dropdown" aria-expanded="false">
@@ -221,53 +244,77 @@
                             </td>
                         </tr>
                     }
+                }else{
+                    <tr>
+                         <td colspan="12">
+                        <div class="alert alert-warning" role="alert" style="background: #ff000026;color: red;border: 1px solid red;">
+                            <i class="fa-solid fa-triangle-exclamation"></i> Not found
+                        </div>
+                        </td>
+                    </tr>
+                }
                 </tbody>
             </table>
         </div>
     </div>
     @* Pagination Controls *@
-    <div aria-label="Page navigation" class="mt-3 py-3 d-flex align-items-center justify-content-between" 
+    <div aria-label="Page navigation" class=" py-3 d-flex align-items-center justify-content-between" 
     style="border-top: 1px solid #e7e1f1;">
+        
         <p style="font-size: 14px;">
-
+           
             Showing @((Model.PageIndex - 1) * Model.PageSize + 1) to @(Math.Min(Model.PageIndex * Model.PageSize, Model.TotalItems)) of @Model.TotalItems items
         </p>
-        <ul class="pagination justify-content-end mb-0">
-            @if (Model.HasPreviousPage)
-            {
-                <li class="page-item">
-                    <a class="page-link" href="@Url.Action("Index", new { search = ViewBag.Search, pageIndex = Model.PageIndex - 1, pageSize = ViewBag.PageSize })"><i class='bx bxs-chevrons-left'></i></a>
-                </li>
-            }
-            else
-            {
-                <li class="page-item disabled">
-                    <span class="page-link"><i class='bx bxs-chevrons-left'></i></span>
-                </li>
-            }
+        <div class=" py-3 d-flex align-items-center">
+            <div class="form-group me-4">
+                <form asp-action="Index" method="get" class="form-inline">
+                    <input type="hidden" name="search" value="@ViewBag.Search" placeholder="Items per page:.." />
+                    <select name="pageSize" id="pageSize" class="form-control" onchange="this.form.submit()">
+                        <option value="4" selected="@(ViewBag.PageSize == 4)">4 Items per page</option>
+                        <option value="10" selected="@(ViewBag.PageSize == 10)">10 Items per page</option>
+                        <option value="20" selected="@(ViewBag.PageSize == 20)">20 Items per page</option>
+                        <option value="50" selected="@(ViewBag.PageSize == 50)">50 Items per page</option>
+                    </select>
+                </form>
+            </div>
+            <ul class="pagination justify-content-end mb-0">
+                @if (Model.HasPreviousPage)
+                {
+                    <li class="page-item">
+                        <a class="page-link" href="@Url.Action("Index", new { search = ViewBag.Search, pageIndex = Model.PageIndex - 1, pageSize = ViewBag.PageSize })"><i class='bx bxs-chevrons-left'></i></a>
+                    </li>
+                }
+                else
+                {
+                    <li class="page-item disabled">
+                        <span class="page-link"><i class='bx bxs-chevrons-left'></i></span>
+                    </li>
+                }
 
-            @for (int i = 1; i <= Model.TotalPages; i++)
-            {
-                <li class="page-item @(i == Model.PageIndex ? "active" : "")">
-                    <a class="page-link" href="@Url.Action("Index", new { search = ViewBag.Search, pageIndex = i, pageSize = ViewBag.PageSize })">@i</a>
-                </li>
-            }
+                @for (int i = 1; i <= Model.TotalPages; i++)
+                {
+                    <li class="page-item @(i == Model.PageIndex ? "active" : "")">
+                        <a class="page-link" href="@Url.Action("Index", new { search = ViewBag.Search, pageIndex = i, pageSize = ViewBag.PageSize })">@i</a>
+                    </li>
+                }
 
-            @if (Model.HasNextPage)
-            {
-                <li class="page-item">
-                    <a class="page-link" href="@Url.Action("Index", 
+                @if (Model.HasNextPage)
+                {
+                    <li class="page-item">
+                        <a class="page-link" href="@Url.Action("Index",
                     new { search = ViewBag.Search, pageIndex = Model.PageIndex + 1, pageSize = ViewBag.PageSize })">
-                    <i class='bx bxs-chevrons-right'></i></a>
-                </li>
-            }
-            else
-            {
-                <li class="page-item disabled">
-                    <span class="page-link"><i class='bx bxs-chevrons-right'></i></span>
-                </li>
-            }
-        </ul>
+                            <i class='bx bxs-chevrons-right'></i>
+                        </a>
+                    </li>
+                }
+                else
+                {
+                    <li class="page-item disabled">
+                        <span class="page-link"><i class='bx bxs-chevrons-right'></i></span>
+                    </li>
+                }
+            </ul>
+        </div>
     </div>
 </div>
 

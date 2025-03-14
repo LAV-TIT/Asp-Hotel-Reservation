@@ -9,9 +9,7 @@ namespace HotelReservations.Models
 		public Guid Id { get; set; }
 		public required string UserName { get; set; }
 		public required string Email { get; set; }
-
-		[MaxLength(5 * 1024 * 1024)]
-		public byte[]? Avatar { get; set; }
+		public string? Avatar { get; set; }
 
 		[StringLength(60)]
 		public required string Password { get; set; }

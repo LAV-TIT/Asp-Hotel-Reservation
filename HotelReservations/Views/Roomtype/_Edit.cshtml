@@ -74,19 +74,20 @@
                             </div>
                             <div class="col-lg-5">
                                 <div class="col-12">
-                                    <div class="mb-2">
+                                    <div class="mb-2"> data-preview
                                         <label asp-for="RoomTypeImage" class="control-label"></label>
-                                        <input type="file" asp-for="RoomTypeImage" name="photo" id="photo" class="form-control" value="~/@Model.RoomTypeImage" />
+                                        <input type="file" asp-for="RoomTypeImage" name="photo" id="photo" onchange="PrePhoto(this)"  data-preview="imagePreview_@Model.RoomTypeId"
+                                        class="form-control" value="~/@Model.RoomTypeImage" />
                                         <span asp-validation-for="RoomTypeImage" class="text-danger"></span>
                                     </div>
                                 </div>
                                 @if (Model.RoomTypeImage is null)
                                 {
-                                    <img src="~/images/uploads.svg" id="imagePreview" alt="Room Type Image" class="rounded-3 img-fluid" />
+                                    <img src="~/images/uploads.svg" id="imagePreview_@Model.RoomTypeId" alt="Room Type Image" class="rounded-3 img-fluid" />
                                 }
                                 else
                                 {
-                                    <img src="~/@Model.RoomTypeImage" id="imagePreview" alt="Room Type Image" class="rounded-3 img-fluid" />
+                                    <img src="~/@Model.RoomTypeImage" id="imagePreview_@Model.RoomTypeId" alt="Room Type Image" class="rounded-3 img-fluid" />
                                 }
                             </div>
                         </div>

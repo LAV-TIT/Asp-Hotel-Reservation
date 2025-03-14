@@ -1,21 +1,30 @@
 ﻿
-const menudp = document.querySelectorAll("a.nav-link");
-menudp.forEach(a => {
-    a.addEventListener('click', function (e) {
-        e.preventDefault(); // Prevent default link behavior
+//const menudp = document.querySelectorAll("a.nav-link");
+//menudp.forEach(a => {
+//    a.addEventListener('click', function (e) {
+//        e.preventDefault(); // Prevent default link behavior
 
-        // Find the next sibling element (the .side-dropdown div)
-        const dropdown = this.nextElementSibling;
-        alert("ddd")
-        dropdown.classList.toggle("shos")
-        // Check if the next sibling is a .side-dropdown element
-        //if (dropdown && dropdown.classList.contains('side-dropdown')) {
-        //    // Toggle the 'show' class on the .side-dropdown div
-        //    dropdown.classList.toggle('show');
-        //}
+//        // Find the next sibling element (the .side-dropdown div)
+//        const dropdown = this.nextElementSibling;
+//        //alert("ddd"+ this.nextElementSibling)
+//        dropdown.classList.toggle("shos")
+//         //Check if the next sibling is a .side-dropdown element
+//        if (dropdown && dropdown.classList.contains('side-dropdown')) {
+//            // Toggle the 'show' class on the .side-dropdown div
+//            dropdown.classList.toggle('show');
+//        }
+//    });
+//});
+document.addEventListener('DOMContentLoaded', function () {
+    const links = document.querySelectorAll('.side-menu a');
+    const currentUrl = window.location.href;
+
+    links.forEach(link => {
+        if (link.href === currentUrl) {
+            link.classList.add('active');
+        }
     });
 });
-
 // SIDEBAR DROPDOWN
 
 const allDropdown = document.querySelectorAll('#sidebar .side-dropdown');
@@ -187,7 +196,7 @@ allProgress.forEach(item => {
     item.style.setProperty('--value', item.dataset.value)
 })
 
-// preview image
+// preview image create
 document.getElementById('photo').addEventListener('change', function (event) {
     const file = event.target.files[0]; // Get the selected file
     const reader = new FileReader(); // Create a FileReader object
@@ -202,5 +211,24 @@ document.getElementById('photo').addEventListener('change', function (event) {
         reader.readAsDataURL(file);
     }
 });
+// preview image edit
+function PrePhoto(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader(); // Create a FileReader object
+        var previewId = input.getAttribute("data-preview"); // Get the associated preview ID
+        var previewElement = document.getElementById(previewId); // Find the image preview element
 
+        if (!previewElement) {
+            console.error("Image preview element not found:", previewId);
+            return; // Exit if the preview element is not found
+        }
 
+        // Define what happens when the file is read
+        reader.onload = function (e) {
+            previewElement.src = e.target.result; // Set the image preview source
+        };
+
+        // Read the file as a Data URL (base64 encoded string)
+        reader.readAsDataURL(input.files[0]);
+    }
+}

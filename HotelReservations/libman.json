@@ -56,6 +56,10 @@
     {
       "library": "boxicons@2.1.4",
       "destination": "wwwroot/boxicons/"
+    },
+    {
+      "library": "fullcalendar@6.1.15",
+      "destination": "wwwroot/fullcalendar/"
     }
   ]
 }

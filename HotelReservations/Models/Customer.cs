@@ -7,5 +7,7 @@ namespace HotelReservations.Models
 	{
 		[Key,DatabaseGenerated(DatabaseGeneratedOption.Identity)]
 		public int CustomerId { get; set; }
-	}
+        public ICollection<Reservation>? Reservations { get; set; }
+
+    }
 }

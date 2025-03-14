@@ -16,33 +16,49 @@ namespace HotelReservations.Controllers
 			_context = dataContext;
 		}
         [HttpGet]
-		public async Task<IActionResult> Index(string search, int pageIndex = 1, int pageSize = 4)
-		{
+        public async Task<IActionResult> Index(string search, string status, int? roomTypeId, int pageIndex = 1, int pageSize = 4)
+        {
             // Fetch all rooms ordered by RoomId
             var roomsQuery = _context.Rooms
                 .OrderByDescending(e => e.RoomId)
                 .Include(e => e.RoomType)
-                .AsTracking();
+                .AsNoTracking();
 
+            // Apply search filter
             if (!string.IsNullOrEmpty(search))
             {
                 roomsQuery = roomsQuery
                     .Where(r =>
-                        r.RoomName.ToLower().Contains(search.ToLower()) || (r.RoomType != null // Search by RoomTypeName
-                        && r.RoomType.RoomTypeName.ToLower().Contains(search.ToLower())) || (r.Floor != null  // Search by RoomTypeName
-                        && r.Floor.ToString().ToLower().Contains(search.ToLower())) // Search by Floor
+                        r.RoomName.ToLower().Contains(search.ToLower()) ||
+                        (r.RoomType != null && r.RoomType.RoomTypeName.ToLower().Contains(search.ToLower())) ||
+                        (r.Floor != null && r.Floor.ToString().ToLower().Contains(search.ToLower()))
                     );
+            }
+
+            // Apply status filter
+            if (!string.IsNullOrEmpty(status))
+            {
+                roomsQuery = roomsQuery.Where(r => r.Status == status);
+            }
+
+            // Apply room type filter
+            if (roomTypeId.HasValue && roomTypeId > 0)
+            {
+                roomsQuery = roomsQuery.Where(r => r.RoomTypeId == roomTypeId);
             }
 
             // Paginate the results
             var paginatedRooms = await PaginatedList<Rooms>.CreateAsync(roomsQuery, pageIndex, pageSize);
 
-            // Pass the search term and pagination info to the view
+            // Pass the search term, status, roomTypeId, and pagination info to the view
             ViewBag.Search = search;
+            ViewBag.Status = status;
+            ViewBag.RoomTypeId = roomTypeId;
             ViewBag.PageIndex = pageIndex;
             ViewBag.PageSize = pageSize;
             ViewBag.TotalPages = paginatedRooms.TotalPages;
 
+            // Fetch room types for the dropdown
             var roomtypes = _context.RoomTypes
                .Select(d => new SelectListItem
                {
@@ -55,7 +71,7 @@ namespace HotelReservations.Controllers
             return View(paginatedRooms);
         }
 
-		[HttpGet]
+        [HttpGet]
 		public IActionResult Create()
 		{
             var roomtypes = _context.RoomTypes
